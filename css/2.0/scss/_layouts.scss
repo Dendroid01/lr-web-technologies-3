@@ -1,0 +1,86 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'sass:color';
+
+.content {
+  display: flex;
+  gap: $spacing-lg;
+
+  .profile,
+  .info {
+    width: 590px;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+    border-radius: $border-radius;
+    border: calc($border-width / 2) solid $border-color;
+    overflow: hidden;
+  }
+
+  .profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .info {
+    padding: $spacing-sm;
+    background-color: $color-background;
+  }
+}
+
+.two-columns {
+  display: flex;
+  padding: $spacing-sm;
+  gap: $spacing-xl;
+  width: 100%;
+  border-radius: $border-radius;
+  border: $border-width solid $border-color;
+  background-color: $color-background;
+
+  .col { flex: 1; }
+}
+
+.page-layout {
+  display: flex;
+  gap: $spacing-lg;
+  width: 100%;
+
+  .anchors {
+    position: sticky;
+    top: 20px;
+    flex-shrink: 0;
+    width: 220px;
+    height: fit-content;
+    background-color: $color-background;
+    border: 2px solid color.adjust($color-black, $lightness: 60%);
+    border-radius: 10px;
+    padding: $spacing-sm;
+
+    ul {
+      list-style: none;
+
+      li {
+        margin-bottom: 10px;
+
+        a {
+          font-weight: 600;
+          text-decoration: none;
+          color: $color-text;
+          @include transition(color);
+
+          &:hover { color: $color-accent; }
+        }
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    flex-direction: column;
+    gap: $spacing-xl;
+    padding: $spacing-sm;
+    border-radius: $border-radius;
+    border: $border-width solid $border-color;
+    background-color: $color-background;
+  }
+}
