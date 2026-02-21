@@ -1,4 +1,4 @@
-import { HistoryRepository } from './repository.js';
+import {HistoryRepository} from './repository.js';
 
 export const HistoryTracker = {
     trackPageVisit(page) {
@@ -11,7 +11,7 @@ export const HistoryTracker = {
         const sessionHistory = HistoryRepository.getSessionHistory();
 
         if (!sessionHistory[page]) {
-            sessionHistory[page] = { count: 0, lastVisit: timestamp };
+            sessionHistory[page] = {count: 0, lastVisit: timestamp};
         }
 
         sessionHistory[page].count++;
@@ -24,7 +24,7 @@ export const HistoryTracker = {
         const totalHistory = HistoryRepository.getTotalHistory();
 
         if (!totalHistory[page]) {
-            totalHistory[page] = { count: 0, lastVisit: timestamp };
+            totalHistory[page] = {count: 0, lastVisit: timestamp};
         }
 
         totalHistory[page].count++;

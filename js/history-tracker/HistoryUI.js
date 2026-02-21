@@ -1,5 +1,5 @@
-import { HistoryRepository } from './repository.js';
-import { HistoryPresentation } from './presentation.js';
+import {HistoryRepository} from './repository.js';
+import {HistoryPresentation} from './presentation.js';
 
 export const HistoryUI = {
     init() {

@@ -1,5 +1,5 @@
-import { HistoryTracker } from './tracker.js';
-import { HistoryUI } from './HistoryUI.js'
+import {HistoryTracker} from './tracker.js';
+import {HistoryUI} from './HistoryUI.js'
 
 $(document).ready(function () {
     const currentPage = HistoryTracker.getCurrentPage();

@@ -14,13 +14,15 @@ export const HistoryRepository = {
     saveSessionHistory(history) {
         try {
             sessionStorage.setItem(this.SESSION_KEY, JSON.stringify(history));
-        } catch {}
+        } catch {
+        }
     },
 
     clearSessionHistory() {
         try {
             sessionStorage.removeItem(this.SESSION_KEY);
-        } catch {}
+        } catch {
+        }
     },
 
     getTotalHistory() {
@@ -35,12 +37,14 @@ export const HistoryRepository = {
     saveTotalHistory(history) {
         try {
             localStorage.setItem(this.TOTAL_KEY, JSON.stringify(history));
-        } catch {}
+        } catch {
+        }
     },
 
     clearTotalHistory() {
         try {
             localStorage.removeItem(this.TOTAL_KEY);
-        } catch {}
+        } catch {
+        }
     }
 };
