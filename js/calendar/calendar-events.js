@@ -1,4 +1,4 @@
-import { formatDate } from './date-utils.js';
+import {formatDate} from './date-utils.js';
 
 export function bindCalendarEvents(calendar, currentDate, selectedDate, setDateCallback, months, weekdays, renderCalendar) {
     const monthSelect = calendar.querySelector('#calendar-month');

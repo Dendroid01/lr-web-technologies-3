@@ -3,115 +3,121 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Персональный сайт Гордиенко Дениса. Контакты</title>
-    <link rel="stylesheet" href="css/main.min.css">
+    <link href="css/main.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная страница</a></li>
-                <li><a href="about.html">Обо мне</a></li>
-                <li class="dropdown">
-                    <a href="interests.html" class="dropdown-link">Мои интересы</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="interests.html#hobby">Моё хобби</a></li>
-                        <li><a href="interests.html#books">Любимые книги</a></li>
-                        <li><a href="interests.html#musics">Любимая музыка</a></li>
-                        <li><a href="interests.html#films">Любимые фильмы</a></li>
-                    </ul>
-                </li>
-                <li><a href="study.html">Учёба</a></li>
-                <li><a href="gallery.html">Фотоальбом</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-                <li><a href="history.html">История просмотра</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная страница</a></li>
+            <li><a href="about.html">Обо мне</a></li>
+            <li class="dropdown">
+                <a class="dropdown-link" href="interests.html">Мои интересы</a>
+                <ul class="dropdown-menu">
+                    <li><a href="interests.html#hobby">Моё хобби</a></li>
+                    <li><a href="interests.html#books">Любимые книги</a></li>
+                    <li><a href="interests.html#musics">Любимая музыка</a></li>
+                    <li><a href="interests.html#films">Любимые фильмы</a></li>
+                </ul>
+            </li>
+            <li><a href="study.html">Учёба</a></li>
+            <li><a href="gallery.html">Фотоальбом</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="history.html">История просмотра</a></li>
+        </ul>
+    </nav>
+</header>
 
 
-    <main>
-        <section class="page-title">
-            <h1>Контакты</h1>
-            <p>Данная страница позволяет отправить сообщение на мой персональный почтовый ящик.</p>
-        </section>
-        <section id="contactApp" class="contact-form">
-            <form @submit.prevent="handleSubmit">
-                <label for="fullname">Фамилия Имя Отчество:</label>
-                <input type="text" id="fullname" v-model="form.fullname" @blur="validateField('fullname')"
-                    :class="{'valid': !errors.fullname && form.fullname, 'invalid': errors.fullname}">
-                <div class="error" v-if="errors.fullname">{{ errors.fullname }}</div>
+<main>
+    <section class="page-title">
+        <h1>Контакты</h1>
+        <p>Данная страница позволяет отправить сообщение на мой персональный почтовый ящик.</p>
+    </section>
+    <section class="contact-form" id="contactApp">
+        <form @submit.prevent="handleSubmit">
+            <label for="fullname">Фамилия Имя Отчество:</label>
+            <input :class="{'valid': !errors.fullname && form.fullname, 'invalid': errors.fullname}"
+                   @blur="validateField('fullname')" id="fullname" type="text"
+                   v-model="form.fullname">
+            <div class="error" v-if="errors.fullname">{{ errors.fullname }}</div>
 
-                <label>Пол:</label>
-                <div class="gender-options" :class="{'valid': !errors.gender && form.gender, 'invalid': errors.gender}">
-                    <input type="radio" id="male" value="Мужской" v-model="form.gender"
-                        @change="validateField('gender')">
-                    <label for="male">Мужской</label>
+            <label>Пол:</label>
+            <div :class="{'valid': !errors.gender && form.gender, 'invalid': errors.gender}" class="gender-options">
+                <input @change="validateField('gender')" id="male" type="radio" v-model="form.gender"
+                       value="Мужской">
+                <label for="male">Мужской</label>
 
-                    <input type="radio" id="female" value="Женский" v-model="form.gender"
-                        @change="validateField('gender')">
-                    <label for="female">Женский</label>
-                </div>
-                <div class="error" v-if="errors.gender">{{ errors.gender }}</div>
+                <input @change="validateField('gender')" id="female" type="radio" v-model="form.gender"
+                       value="Женский">
+                <label for="female">Женский</label>
+            </div>
+            <div class="error" v-if="errors.gender">{{ errors.gender }}</div>
 
-                <label for="age">Возраст:</label>
-                <select id="age" v-model="form.age" @change="validateField('age')"
-                    :class="{'valid': !errors.age && form.age, 'invalid': errors.age}">
-                    <option value="до 18">до 18</option>
-                    <option value="18-25">18–25</option>
-                    <option value="26-35">26–35</option>
-                    <option value="36-50">36–50</option>
-                    <option value="50+">50+</option>
-                </select>
-                <div class="error" v-if="errors.age">{{ errors.age }}</div>
+            <label for="age">Возраст:</label>
+            <select :class="{'valid': !errors.age && form.age, 'invalid': errors.age}" @change="validateField('age')"
+                    id="age"
+                    v-model="form.age">
+                <option value="до 18">до 18</option>
+                <option value="18-25">18–25</option>
+                <option value="26-35">26–35</option>
+                <option value="36-50">36–50</option>
+                <option value="50+">50+</option>
+            </select>
+            <div class="error" v-if="errors.age">{{ errors.age }}</div>
 
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" v-model="form.email" @blur="validateField('email')"
-                    :class="{'valid': !errors.email && form.email, 'invalid': errors.email}">
-                <div class="error" v-if="errors.email">{{ errors.email }}</div>
+            <label for="email">E-mail:</label>
+            <input :class="{'valid': !errors.email && form.email, 'invalid': errors.email}"
+                   @blur="validateField('email')" id="email" type="email"
+                   v-model="form.email">
+            <div class="error" v-if="errors.email">{{ errors.email }}</div>
 
-                <label for="phone">Телефон:</label>
-                <input type="text" id="phone" v-model="form.phone" @blur="validateField('phone')"
-                    :class="{'valid': !errors.phone && form.phone, 'invalid': errors.phone}">
-                <div class="error" v-if="errors.phone">{{ errors.phone }}</div>
+            <label for="phone">Телефон:</label>
+            <input :class="{'valid': !errors.phone && form.phone, 'invalid': errors.phone}"
+                   @blur="validateField('phone')" id="phone" type="text"
+                   v-model="form.phone">
+            <div class="error" v-if="errors.phone">{{ errors.phone }}</div>
 
-                <label for="message">Сообщение:</label>
-                <textarea id="message" v-model="form.message" rows="5" @blur="validateField('message')"
-                    :class="{'valid': !errors.message && form.message, 'invalid': errors.message}"></textarea>
-                <div class="error" v-if="errors.message"> {{ errors.message }}</div>
+            <label for="message">Сообщение:</label>
+            <textarea :class="{'valid': !errors.message && form.message, 'invalid': errors.message}"
+                      @blur="validateField('message')" id="message" rows="5"
+                      v-model="form.message"></textarea>
+            <div class="error" v-if="errors.message"> {{ errors.message }}</div>
 
-                <label for="birthdate">Дата рождения:</label>
-                <div class="birthdate-container">
-                    <input type="text" id="birthdate" v-model="form.birthdate" placeholder="месяц/день/год"
-                        @change="validateField('birthdate')"
-                        :class="{'valid': !errors.birthdate && form.birthdate, 'invalid': errors.birthdate}">
-                    <div id="calendar" class="calendar"></div>
-                </div>
-                <div class="error" v-if="errors.birthdate">{{ errors.birthdate }}</div>
+            <label for="birthdate">Дата рождения:</label>
+            <div class="birthdate-container">
+                <input :class="{'valid': !errors.birthdate && form.birthdate, 'invalid': errors.birthdate}"
+                       @change="validateField('birthdate')" id="birthdate" placeholder="месяц/день/год"
+                       type="text"
+                       v-model="form.birthdate">
+                <div class="calendar" id="calendar"></div>
+            </div>
+            <div class="error" v-if="errors.birthdate">{{ errors.birthdate }}</div>
 
-                <button type="submit" :disabled="!isFormValid">Отправить</button>
-                <button type="button" @click="resetForm">Очистить форму</button>
-            </form>
+            <button :disabled="!isFormValid" type="submit">Отправить</button>
+            <button @click="resetForm" type="button">Очистить форму</button>
+        </form>
 
-        </section>
-    </main>
+    </section>
+</main>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; Gordienko D.O, 2025</p>
-            <div id="datetime" class="datetime"></div>
-        </div>
-    </footer>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-    <script src="js/jquery-3.7.1.min.js"></script>
-    <script type="module" src="js/history-tracker/history-tracker-init.js"></script>
-    <script src="js/footer/dateTime.js"></script>
-    <script src="js/navigation.js"></script>
-    <script type="module" src="js/contactForm-vue.js"></script>
-    <script src="js/popover.js"></script>
-    <script src="js/modal.js"></script>
+<footer>
+    <div class="footer-content">
+        <p>&copy; Gordienko D.O, 2025</p>
+        <div class="datetime" id="datetime"></div>
+    </div>
+</footer>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/history-tracker/history-tracker-init.js" type="module"></script>
+<script src="js/footer/dateTime.js"></script>
+<script src="js/navigation/navigation-init.js" type="module"></script>
+<script src="js/contactForm-vue.js" type="module"></script>
+<script src="js/popover.js"></script>
+<script src="js/modal/modal-init.js" type="module"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     if ($('#interests-content').length) {
         initInterestsManager();
     }
@@ -25,7 +25,7 @@ $(document).ready(function() {
             }
         ];
 
-        $.each(groups, function(index, group) {
+        $.each(groups, function (index, group) {
             const $groupElement = createListGroup(group.title, group.items);
             $content.append($groupElement);
         });
@@ -38,7 +38,7 @@ $(document).ready(function() {
 
         const $cardContainer = $('<div class="list-container"></div>');
 
-        $.each(items, function(index, item) {
+        $.each(items, function (index, item) {
             const $card = $('<div class="item-card"></div>');
             const $cardTitle = $('<p></p>').text(item);
             $card.append($cardTitle);

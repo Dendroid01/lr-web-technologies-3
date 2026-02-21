@@ -16,7 +16,9 @@
     cursor: pointer;
     transition: transform 0.3s ease;
 
-    &:hover { transform: scale(1.05); }
+    &:hover {
+      transform: scale(1.05);
+    }
 
     img {
       display: block;
@@ -45,14 +47,16 @@
       font-size: $font-size-base;
       text-align: center;
       color: $color-white;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
       opacity: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       transition: opacity 0.3s;
 
-      &:hover { opacity: 1; }
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

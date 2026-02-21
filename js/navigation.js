@@ -1,17 +1,17 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     $('.dropdown').hover(
-        function() {
+        function () {
             $(this).find('.dropdown-menu').addClass('active');
         },
-        function() {
+        function () {
             $(this).find('.dropdown-menu').removeClass('active');
         }
     );
 
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
-    $('header nav a').each(function() {
+
+    $('header nav a').each(function () {
         const linkPage = $(this).attr('href').split('#')[0];
         if (linkPage === currentPage) {
             $(this).addClass('active');
@@ -23,18 +23,18 @@ $(document).ready(function() {
     });
 
     $('header nav > ul > li').hover(
-        function() {
+        function () {
             const $item = $(this);
             const $link = $item.find('a').first();
-            
+
             if (!$link.hasClass('active')) {
                 applyHoverStyles($item, $link);
             }
         },
-        function() {
+        function () {
             const $item = $(this);
             const $link = $item.find('a').first();
-            
+
             if (!$link.hasClass('active')) {
                 removeHoverStyles($item, $link);
             }
@@ -47,13 +47,13 @@ $(document).ready(function() {
             $link.data('originalBackground', $link.css('backgroundColor'));
             $link.data('originalBorder', $link.css('borderBottomColor'));
         }
-        
+
         $item.css('backgroundColor', '#2b2b2b');
         $link.css({
             'backgroundColor': '#2b2b2b',
             'borderBottomColor': '#ffffff'
         });
-        
+
         if ($item.hasClass('dropdown')) {
             $item.find('.dropdown-link').css('borderBottomColor', '#ffffff');
         }
@@ -65,20 +65,20 @@ $(document).ready(function() {
             'backgroundColor': $link.data('originalBackground'),
             'borderBottomColor': $link.data('originalBorder')
         });
-        
+
         if ($item.hasClass('dropdown')) {
             $item.find('.dropdown-link').css('borderBottomColor', $link.data('originalBorder'));
         }
     }
 
     $('.dropdown-menu a').hover(
-        function() {
+        function () {
             const $link = $(this);
             if (!$link.hasClass('active')) {
                 applyDropdownItemHover($link);
             }
         },
-        function() {
+        function () {
             const $link = $(this);
             if (!$link.hasClass('active')) {
                 removeDropdownItemHover($link);
@@ -91,7 +91,7 @@ $(document).ready(function() {
             $link.data('originalBackground', $link.css('backgroundColor'));
             $link.data('originalPadding', $link.css('paddingLeft'));
         }
-        
+
         $link.css({
             'backgroundColor': '#2b2b2b',
             'paddingLeft': '20px'
@@ -105,13 +105,13 @@ $(document).ready(function() {
         });
     }
 
-    $('a[href^="#"]').on('click', function(e) {
+    $('a[href^="#"]').on('click', function (e) {
         if (this.hash !== "") {
             e.preventDefault();
-            
+
             const hash = this.hash;
             const $target = $(hash);
-            
+
             if ($target.length) {
                 $('html, body').animate({
                     scrollTop: $target.offset().top - 80
@@ -126,9 +126,9 @@ $(document).ready(function() {
         }
     });
 
-    $('a').on('click', function() {
+    $('a').on('click', function () {
         const href = $(this).attr('href');
-        
+
         if (href && !href.startsWith('#') && !href.startsWith('javascript:') && !href.startsWith('mailto:')) {
             showLoadingIndicator();
         }
@@ -148,7 +148,7 @@ $(document).ready(function() {
             })
             .appendTo('body');
 
-        setTimeout(function() {
+        setTimeout(function () {
             $indicator.remove();
         }, 3000);
     }

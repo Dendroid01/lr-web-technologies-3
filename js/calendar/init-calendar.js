@@ -1,6 +1,6 @@
-import { CustomCalendar } from './CustomCalendar.js';
+import {CustomCalendar} from './CustomCalendar.js';
 
-export { CustomCalendar }
+export {CustomCalendar}
 
 document.addEventListener('DOMContentLoaded', function () {
     const birthdateInput = document.getElementById('birthdate');

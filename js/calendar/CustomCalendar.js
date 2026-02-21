@@ -1,5 +1,5 @@
-import { generateCalendarHTML } from './render-calendar.js';
-import { bindCalendarEvents } from './calendar-events.js';
+import {generateCalendarHTML} from './render-calendar.js';
+import {bindCalendarEvents} from './calendar-events.js';
 
 export class CustomCalendar {
     constructor(inputId, calendarId, onDateSelected) {
@@ -10,7 +10,7 @@ export class CustomCalendar {
 
         this.onDateSelected = onDateSelected;
         this.currentDate = new Date();
-        this.selectedDate = { date: null };
+        this.selectedDate = {date: null};
 
         this.months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
             'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
@@ -39,9 +39,18 @@ export class CustomCalendar {
         });
     }
 
-    show() { this.calendar.classList.add('active'); this.render(); }
-    hide() { this.calendar.classList.remove('active'); }
-    isVisible() { return this.calendar.classList.contains('active'); }
+    show() {
+        this.calendar.classList.add('active');
+        this.render();
+    }
+
+    hide() {
+        this.calendar.classList.remove('active');
+    }
+
+    isVisible() {
+        return this.calendar.classList.contains('active');
+    }
 
     render() {
         this.calendar.innerHTML = generateCalendarHTML(this.currentDate, this.selectedDate.date, this.months, this.weekdays);

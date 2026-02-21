@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const $modal = $('<div class="blur-modal"></div>');
     let modalContent = '';
 
@@ -15,22 +15,22 @@ $(document).ready(function() {
                 <div class="blur-modal-body"></div>
             </div>
         `;
-        
+
         $modal.html(modalContent).hide().appendTo('body');
     }
 
     function bindEvents() {
-        $modal.on('click', '.blur-modal-close', function() {
+        $modal.on('click', '.blur-modal-close', function () {
             hideModal();
         });
-        
-        $modal.on('click', function(e) {
+
+        $modal.on('click', function (e) {
             if (e.target === this) {
                 hideModal();
             }
         });
-        
-        $(document).on('keydown', function(e) {
+
+        $(document).on('keydown', function (e) {
             if (e.key === 'Escape' && $modal.is(':visible')) {
                 hideModal();
             }
@@ -43,26 +43,26 @@ $(document).ready(function() {
                 '<button class="modal-trigger" data-modal="education-details">Подробнее об университете</button>'
             );
         }
-        
+
         if ($('.study-plan').length) {
             $('.study-plan').before(
                 '<button class="modal-trigger" data-modal="study-plan-help">Помощь по чтению плана</button>'
             );
         }
-        
+
         if ($('.contact-form').length) {
             $('.contact-form').before(
                 '<button class="modal-trigger" data-modal="contact-help">Помощь по заполнению формы</button>'
             );
         }
-        
+
         if ($('#gallery').length) {
             $('#gallery').before(
                 '<button class="modal-trigger" data-modal="gallery-help">Как пользоваться галереей</button>'
             );
         }
-        
-        $(document).on('click', '.modal-trigger', function(e) {
+
+        $(document).on('click', '.modal-trigger', function (e) {
             const modalType = $(e.target).data('modal');
             showModalContent(modalType);
             showModal();
@@ -135,14 +135,14 @@ $(document).ready(function() {
                 </div>
             `
         };
-        
+
         return contents[type] || '<p>Содержание не найдено</p>';
     }
 
     function showModal() {
         $('body').addClass('modal-open');
         $modal.fadeIn(300);
-        
+
         $modal.find('.blur-modal-content').css({
             'transform': 'scale(0.9)',
             'opacity': '0'

@@ -1,5 +1,5 @@
 // js/modal.js
-import { galleryData } from './gallery-data.js';
+import {galleryData} from './gallery-data.js';
 
 let currentIndex = 0;
 const $modal = $('#photo-modal');
@@ -63,7 +63,7 @@ function updateModal() {
     $modalImage.addClass('loading');
 
     const tempImage = new Image();
-    tempImage.onload = function() {
+    tempImage.onload = function () {
         $modalImage.removeClass('loading').attr('src', currentItem.src);
         if (tempImage.width < 400 || tempImage.height < 400) {
             $modalImage.addClass('original-size');
@@ -71,7 +71,7 @@ function updateModal() {
             $modalImage.removeClass('original-size');
         }
     };
-    tempImage.onerror = function() {
+    tempImage.onerror = function () {
         $modalImage.removeClass('loading')
             .attr('src', 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9IiNmMGY0ZjgiPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZTVlNWU1Ii8+PHRleHQgeD0iMjAwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SW1hZ2Ugbm90IGZvdW5kPC90ZXh0Pjwvc3ZnPg==')
             .attr('alt', 'Изображение не найдено');

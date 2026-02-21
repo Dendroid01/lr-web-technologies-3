@@ -1,4 +1,4 @@
-import { HistoryStorage } from './HistoryStorage.js';
+import {HistoryStorage} from './HistoryStorage.js';
 
 export const HistoryUI = {
     init() {

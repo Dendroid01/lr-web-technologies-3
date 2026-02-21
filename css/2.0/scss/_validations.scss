@@ -1,10 +1,11 @@
-input.valid, select.valid, textarea.valid { 
-  border-color: #4CAF50 !important; 
-  box-shadow: 0 0 5px rgba(76,175,80,0.3);
+input.valid, select.valid, textarea.valid {
+  border-color: #4CAF50 !important;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
 }
+
 input.invalid, select.invalid, textarea.invalid {
   border-color: #f44336 !important;
-  box-shadow: 0 0 5px rgba(244,67,54,0.3);
+  box-shadow: 0 0 5px rgba(244, 67, 54, 0.3);
 }
 
 .field-error {
@@ -21,5 +22,14 @@ input.invalid, select.invalid, textarea.invalid {
   display: block;
 }
 
-.gender-options.valid { border: 2px solid #4CAF50; padding: 8px; border-radius: 8px; }
-.gender-options.invalid { border: 2px solid #f44336; padding: 8px; border-radius: 8px; }
+.gender-options.valid {
+  border: 2px solid #4CAF50;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.gender-options.invalid {
+  border: 2px solid #f44336;
+  padding: 8px;
+  border-radius: 8px;
+}

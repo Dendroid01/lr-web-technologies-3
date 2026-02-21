@@ -1,7 +1,7 @@
-import { HistoryStorage } from './HistoryStorage.js';
-import { HistoryUI } from './HistoryUI.js';
+import {HistoryStorage} from './HistoryStorage.js';
+import {HistoryUI} from './HistoryUI.js';
 
-$(document).ready(function() {
+$(document).ready(function () {
     HistoryStorage.init();
     HistoryUI.init();
 });

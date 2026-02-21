@@ -1,4 +1,4 @@
-import { isSameDate } from './date-utils.js';
+import {isSameDate} from './date-utils.js';
 
 export function generateCalendarHTML(currentDate, selectedDate, months, weekdays) {
     const year = currentDate.getFullYear();

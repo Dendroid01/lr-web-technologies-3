@@ -3,69 +3,68 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Персональный сайт Гордиенко Дениса. Главная страница.</title>
-    <link rel="stylesheet" href="css/main.min.css">
+    <link href="css/main.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная страница</a></li>
-                <li><a href="about.html">Обо мне</a></li>
-                <li class="dropdown">
-                    <a href="interests.html" class="dropdown-link">Мои интересы</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="interests.html#hobby">Моё хобби</a></li>
-                        <li><a href="interests.html#books">Любимые книги</a></li>
-                        <li><a href="interests.html#musics">Любимая музыка</a></li>
-                        <li><a href="interests.html#films">Любимые фильмы</a></li>
-                    </ul>
-                </li>
-                <li><a href="study.html">Учёба</a></li>
-                <li><a href="gallery.html">Фотоальбом</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-                <li><a href="history.html">История просмотра</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная страница</a></li>
+            <li><a href="about.html">Обо мне</a></li>
+            <li class="dropdown">
+                <a class="dropdown-link" href="interests.html">Мои интересы</a>
+                <ul class="dropdown-menu">
+                    <li><a href="interests.html#hobby">Моё хобби</a></li>
+                    <li><a href="interests.html#books">Любимые книги</a></li>
+                    <li><a href="interests.html#musics">Любимая музыка</a></li>
+                    <li><a href="interests.html#films">Любимые фильмы</a></li>
+                </ul>
+            </li>
+            <li><a href="study.html">Учёба</a></li>
+            <li><a href="gallery.html">Фотоальбом</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="history.html">История просмотра</a></li>
+        </ul>
+    </nav>
+</header>
 
 
-    <main>
-        <section class="page-title">
-            <h1>Главная страница</h1>
-        </section>
+<main>
+    <section class="page-title">
+        <h1>Главная страница</h1>
+    </section>
 
-        <section class="content">
-            <div class="profile">
-                <img src="images/me.jpg" alt="Моё фото">
-            </div>
-
-            <div class="info">
-                <p>
-                    ФИО: Гордиенко Денис Олегович <br>
-                    ИС/б-23-1-о
-                </p>
-                <br>
-                <p>Лабораторная работа №1 &laquo;Исследование возможностей языка разметки гипертекстов HTML и каскадных
-                    таблиц стилей CSS&raquo;</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; Gordienko D.O, 2025</p>
-            <div id="datetime" class="datetime"></div>
+    <section class="content">
+        <div class="profile">
+            <img alt="Моё фото" src="images/me.jpg">
         </div>
-    </footer>
-    <script src="js/jquery-3.7.1.min.js"></script>
-    <script type="module" src="js/history-tracker/history-tracker-init.js"></script>
-    <script src="js/footer/dateTime.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/popover.js"></script>
-    <script src="js/modal.js"></script>
+
+        <div class="info">
+            <p>
+                ФИО: Гордиенко Денис Олегович <br>
+                ИС/б-23-1-о
+            </p>
+            <br>
+            <p>Лабораторная работа №1 &laquo;Исследование возможностей языка разметки гипертекстов HTML и каскадных
+                таблиц стилей CSS&raquo;</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p>&copy; Gordienko D.O, 2025</p>
+        <div class="datetime" id="datetime"></div>
+    </div>
+</footer>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/history-tracker/history-tracker-init.js" type="module"></script>
+<script src="js/footer/dateTime.js"></script>
+<script src="js/navigation/navigation-init.js" type="module"></script>
+<script src="js/popover.js"></script>
 </body>
 
 </html>

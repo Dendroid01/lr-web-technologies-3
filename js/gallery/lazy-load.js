@@ -11,5 +11,7 @@ export function initLazyLoading() {
         });
     });
 
-    $lazyImages.each(function() { observer.observe(this); });
+    $lazyImages.each(function () {
+        observer.observe(this);
+    });
 }

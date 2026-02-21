@@ -1,5 +1,5 @@
-import { FormValidator } from "./FormValidator.js";
-import { FieldErrorManager } from "./FieldErrorManager.js";
+import {FormValidator} from "./FormValidator.js";
+import {FieldErrorManager} from "./FieldErrorManager.js";
 
 export class TestForm {
     constructor(formSelector) {
@@ -32,6 +32,6 @@ export class TestForm {
     }
 
     clearFieldError(fieldName) {
-    this.errorManager.clear(fieldName);
+        this.errorManager.clear(fieldName);
     }
 }
