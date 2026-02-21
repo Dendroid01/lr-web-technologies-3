@@ -1,4 +1,5 @@
-import {HistoryStorage} from './HistoryStorage.js';
+import { HistoryRepository } from './repository.js';
+import { HistoryPresentation } from './presentation.js';
 
 export const HistoryUI = {
     init() {
@@ -8,8 +9,8 @@ export const HistoryUI = {
     },
 
     renderTables() {
-        this.renderTable('session-history', HistoryStorage.getSessionHistory());
-        this.renderTable('total-history', HistoryStorage.getTotalHistory());
+        this.renderTable('session-history', HistoryRepository.getSessionHistory());
+        this.renderTable('total-history', HistoryRepository.getTotalHistory());
     },
 
     renderTable(tableId, data) {
@@ -26,9 +27,9 @@ export const HistoryUI = {
 
         entries.forEach(([pageId, info]) => {
             const row = `<tr>
-                <td>${HistoryStorage.getPageDisplayName(pageId)}</td>
+                <td>${HistoryPresentation.getPageDisplayName(pageId)}</td>
                 <td>${info.count}</td>
-                <td>${HistoryStorage.formatDate(info.lastVisit)}</td>
+                <td>${HistoryPresentation.formatDate(info.lastVisit)}</td>
             </tr>`;
             $tbody.append(row);
         });
@@ -37,16 +38,16 @@ export const HistoryUI = {
     bindEvents() {
         $('#clear-session').on('click', () => {
             if (confirm('Вы уверены, что хотите очистить историю текущего сеанса?')) {
-                HistoryStorage.clearSessionHistory();
-                this.renderTable('session-history', HistoryStorage.getSessionHistory());
+                HistoryRepository.clearSessionHistory();
+                this.renderTable('session-history', HistoryRepository.getSessionHistory());
                 this.showMessage('История текущего сеанса очищена');
             }
         });
 
         $('#clear-total').on('click', () => {
             if (confirm('Вы уверены, что хотите очистить всю историю просмотров?')) {
-                HistoryStorage.clearTotalHistory();
-                this.renderTable('total-history', HistoryStorage.getTotalHistory());
+                HistoryRepository.clearTotalHistory();
+                this.renderTable('total-history', HistoryRepository.getTotalHistory());
                 this.showMessage('Вся история просмотров очищена');
             }
         });
@@ -54,10 +55,15 @@ export const HistoryUI = {
 
     showMessage(msg) {
         const $el = $('<div class="history-message"></div>').text(msg).css({
-            position: 'fixed', top: '20px', right: '20px',
-            background: '#4CAF50', color: 'white',
-            padding: '15px 20px', borderRadius: '5px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.3)', zIndex: 1000,
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            background: '#4CAF50',
+            color: 'white',
+            padding: '15px 20px',
+            borderRadius: '5px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+            zIndex: 1000,
             animation: 'slideIn 0.3s ease'
         }).appendTo('body');
 
