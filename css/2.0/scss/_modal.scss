@@ -27,7 +27,7 @@
     background: $color-white;
     border-radius: $border-radius;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     animation: scaleIn 0.3s ease;
@@ -48,7 +48,7 @@
         height: auto;
         object-fit: contain;
         border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease;
 
         &.original-size {
@@ -63,7 +63,9 @@
           animation: loading 1.5s infinite;
         }
 
-        &:hover { transform: scale(1.02); }
+        &:hover {
+          transform: scale(1.02);
+        }
       }
     }
 
@@ -104,7 +106,7 @@
       right: 15px;
       width: 40px;
       height: 40px;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.7);
       border-radius: 50%;
       cursor: pointer;
       z-index: 1001;
@@ -115,7 +117,7 @@
       transition: all 0.3s ease;
 
       &:hover {
-        background: rgba(0,0,0,0.9);
+        background: rgba(0, 0, 0, 0.9);
         transform: scale(1.1);
       }
     }
@@ -132,7 +134,7 @@
       z-index: 1001;
 
       .nav-btn {
-        background: rgba(0,0,0,0.7);
+        background: rgba(0, 0, 0, 0.7);
         color: $color-white;
         border: none;
         width: 50px;
@@ -143,8 +145,8 @@
         @include flex-center(row, center, center);
         transition: all 0.3s ease;
 
-        &:hover { 
-          background: rgba(0,0,0,0.9);
+        &:hover {
+          background: rgba(0, 0, 0, 0.9);
           transform: scale(1.1);
         }
 

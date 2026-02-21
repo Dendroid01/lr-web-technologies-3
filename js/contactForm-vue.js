@@ -1,4 +1,6 @@
-const { createApp } = Vue;
+const {createApp} = Vue;
+
+import {CustomCalendar} from './calendar/CustomCalendar.js';
 
 createApp({
     data() {

@@ -8,12 +8,14 @@
   line-height: 1.4;
   padding: 8px 12px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   max-width: 260px;
   pointer-events: none;
   white-space: normal;
 
-  &.show { opacity: 1; }
+  &.show {
+    opacity: 1;
+  }
 
   &:after {
     content: '';
