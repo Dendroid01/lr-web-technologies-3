@@ -1,5 +1,7 @@
 const { createApp } = Vue;
 
+import { CustomCalendar } from './calendar/CustomCalendar.js';
+
 createApp({
     data() {
         return {
