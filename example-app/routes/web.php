@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\FormPageController;
 use App\Http\Controllers\PhotoController;
+use App\Models\Interest;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,7 +14,8 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/interests', function () {
-    return view('interests');
+    $categories = Interest::getAllCategories();
+    return view('interests', compact('categories'));
 })->name('interests');
 
 Route::get('/study', function () {
@@ -22,9 +25,11 @@ Route::get('/study', function () {
 Route::get('/gallery', [PhotoController::class, 'index'])->name('gallery');
 Route::get('/gallery/photo/{id}', [PhotoController::class, 'show'])->name('gallery.photo');
 
-Route::get('/contacts', function () {
-    return view('contacts');
-})->name('contacts');
+Route::get('/contacts', [FormPageController::class, 'showContacts'])->name('contacts');
+Route::post('/contacts', [FormPageController::class, 'submitContacts'])->name('contacts.submit');
+
+Route::get('/test', [FormPageController::class, 'showTest'])->name('test');
+Route::post('/test', [FormPageController::class, 'submitTest'])->name('test.submit');
 
 Route::get('/history', function () {
     return view('history');

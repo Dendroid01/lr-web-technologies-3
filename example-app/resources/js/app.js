@@ -1,12 +1,19 @@
 import './bootstrap';
-
-// Импортируйте jQuery
 import $ from 'jquery';
+
 window.$ = window.jQuery = $;
 
-await import('./history-tracker/history-tracker-init.js');
-await import('./footer/dateTime.js');
-await import('./navigation/navigation-init.js');
-await import('./gallery/gallery-init.js');
-await import('./popover.js');
-await import('./modal/modal-init.js');
+
+import('./history-tracker/history-tracker-init.js');
+import('./footer/dateTime.js');
+import('./navigation/navigation-init.js');
+import('./gallery/gallery-init.js');
+import('./popover.js');
+import('./modal/modal-init.js');
+
+import { initContactForm } from './contactForm-vue.js';
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('contactApp')) {
+        initContactForm();
+    }
+});
