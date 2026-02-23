@@ -55,7 +55,7 @@
 
 <div class="modal" id="photo-modal">
     <div class="modal-content">
-        <span class="modal-close">&times;</span>
+        <span class="modal-close">X</span>
         <div class="modal-nav">
             <button class="nav-btn prev-btn">&larr;</button>
             <button class="nav-btn next-btn">&rarr;</button>
