@@ -58,13 +58,59 @@
                 <option value="">-- выберите группу --</option>
                 <optgroup label="1 курс">
                     <option value="ИБ/б-25-1-о" {{ old('group') === 'ИБ/б-25-1-о' ? 'selected' : '' }}>ИБ/б-25-1-о</option>
+                    <option value="ИБ/б-25-2-о" {{ old('group') === 'ИБ/б-25-2-о' ? 'selected' : '' }}>ИБ/б-25-2-о</option>
                     <option value="ИИ/б-25-1-о" {{ old('group') === 'ИИ/б-25-1-о' ? 'selected' : '' }}>ИИ/б-25-1-о</option>
+                    <option value="ИИ/б-25-2-о" {{ old('group') === 'ИИ/б-25-2-о' ? 'selected' : '' }}>ИИ/б-25-2-о</option>
+                    <option value="ИИ/б-25-3-о" {{ old('group') === 'ИИ/б-25-3-о' ? 'selected' : '' }}>ИИ/б-25-3-о</option>
+                    <option value="ИИ/б-25-4-о" {{ old('group') === 'ИИ/б-25-4-о' ? 'selected' : '' }}>ИИ/б-25-4-о</option>
+                    <option value="ИИ/б-25-5-о" {{ old('group') === 'ИИ/б-25-5-о' ? 'selected' : '' }}>ИИ/б-25-5-о</option>
+                    <option value="ИИ/б-25-6-о" {{ old('group') === 'ИИ/б-25-6-о' ? 'selected' : '' }}>ИИ/б-25-6-о</option>
+                    <option value="ИИ/б-25-7-о" {{ old('group') === 'ИИ/б-25-7-о' ? 'selected' : '' }}>ИИ/б-25-7-о</option>
+                    <option value="ИИ/б-25-8-о" {{ old('group') === 'ИИ/б-25-8-о' ? 'selected' : '' }}>ИИ/б-25-8-о</option>
                     <option value="УТС/б-25-1-о" {{ old('group') === 'УТС/б-25-1-о' ? 'selected' : '' }}>УТС/б-25-1-о</option>
+                    <option value="ЦТ/б-25-1-о" {{ old('group') === 'ЦТ/б-25-1-о' ? 'selected' : '' }}>ЦТ/б-25-1-о</option>
                 </optgroup>
                 <optgroup label="2 курс">
                     <option value="УТС/б-24-1-о" {{ old('group') === 'УТС/б-24-1-о' ? 'selected' : '' }}>УТС/б-24-1-о</option>
                     <option value="ИБ/б-24-1-о" {{ old('group') === 'ИБ/б-24-1-о' ? 'selected' : '' }}>ИБ/б-24-1-о</option>
+                    <option value="ИБ/б-24-2-о" {{ old('group') === 'ИБ/б-24-2-о' ? 'selected' : '' }}>ИБ/б-24-2-о</option>
                     <option value="ИТ/б-24-1-о" {{ old('group') === 'ИТ/б-24-1-о' ? 'selected' : '' }}>ИТ/б-24-1-о</option>
+                    <option value="ИТ/б-24-2-о" {{ old('group') === 'ИТ/б-24-2-о' ? 'selected' : '' }}>ИТ/б-24-2-о</option>
+                    <option value="ИТ/б-24-3-о" {{ old('group') === 'ИТ/б-24-3-о' ? 'selected' : '' }}>ИТ/б-24-3-о</option>
+                    <option value="ИТ/б-24-4-о" {{ old('group') === 'ИТ/б-24-4-о' ? 'selected' : '' }}>ИТ/б-24-4-о</option>
+                    <option value="ИТ/б-24-5-о" {{ old('group') === 'ИТ/б-24-5-о' ? 'selected' : '' }}>ИТ/б-24-5-о</option>
+                    <option value="ИТ/б-24-6-о" {{ old('group') === 'ИТ/б-24-6-о' ? 'selected' : '' }}>ИТ/б-24-6-о</option>
+                    <option value="ИТ/б-24-7-о" {{ old('group') === 'ИТ/б-24-7-о' ? 'selected' : '' }}>ИТ/б-24-7-о</option>
+                    <option value="ИТ/б-24-8-о" {{ old('group') === 'ИТ/б-24-8-о' ? 'selected' : '' }}>ИТ/б-24-8-о</option>
+                    <option value="ЦТ/б-24-1-о" {{ old('group') === 'ЦТ/б-24-1-о' ? 'selected' : '' }}>ЦТ/б-24-1-о</option>
+                </optgroup>
+                <optgroup label="3 курс">
+                    <option value="УТС/б-23-1-о" {{ old('group') === 'УТС/б-23-1-о' ? 'selected' : '' }}>УТС/б-23-1-о</option>
+                    <option value="УТС/б-23-2-о" {{ old('group') === 'УТС/б-23-2-о' ? 'selected' : '' }}>УТС/б-23-2-о</option>
+                    <option value="ИБ/б-23-1-о" {{ old('group') === 'ИБ/б-23-1-о' ? 'selected' : '' }}>ИБ/б-23-1-о</option>
+                    <option value="ИБ/б-23-2-о" {{ old('group') === 'ИБ/б-23-2-о' ? 'selected' : '' }}>ИБ/б-23-2-о</option>
+                    <option value="ИВТ/б-23-1-о" {{ old('group') === 'ИВТ/б-23-1-о' ? 'selected' : '' }}>ИВТ/б-23-1-о</option>
+                    <option value="ИВТ/б-23-2-о" {{ old('group') === 'ИВТ/б-23-2-о' ? 'selected' : '' }}>ИВТ/б-23-2-о</option>
+                    <option value="ИС/б-23-1-о" {{ old('group') === 'ИС/б-23-1-о' ? 'selected' : '' }}>ИС/б-23-1-о</option>
+                    <option value="ИС/б-23-2-о" {{ old('group') === 'ИС/б-23-2-о' ? 'selected' : '' }}>ИС/б-23-2-о</option>
+                    <option value="ПИ/б-23-1-о" {{ old('group') === 'ПИ/б-23-1-о' ? 'selected' : '' }}>ПИ/б-23-1-о</option>
+                    <option value="ПИ/б-23-2-о" {{ old('group') === 'ПИ/б-23-2-о' ? 'selected' : '' }}>ПИ/б-23-2-о</option>
+                    <option value="ПИН/б-23-1-о" {{ old('group') === 'ПИН/б-23-1-о' ? 'selected' : '' }}>ПИН/б-23-1-о</option>
+                    <option value="ПИН/б-23-2-о" {{ old('group') === 'ПИН/б-23-2-о' ? 'selected' : '' }}>ПИН/б-23-2-о</option>
+                </optgroup>
+                <optgroup label="4 курс">
+                    <option value="ИБ/б-22-1-о" {{ old('group') === 'ИБ/б-22-1-о' ? 'selected' : '' }}>ИБ/б-22-1-о</option>
+                    <option value="ИБ/б-22-2-о" {{ old('group') === 'ИБ/б-22-2-о' ? 'selected' : '' }}>ИБ/б-22-2-о</option>
+                    <option value="ИВТ/б-22-1-о" {{ old('group') === 'ИВТ/б-22-1-о' ? 'selected' : '' }}>ИВТ/б-22-1-о</option>
+                    <option value="ИВТ/б-22-2-о" {{ old('group') === 'ИВТ/б-22-2-о' ? 'selected' : '' }}>ИВТ/б-22-2-о</option>
+                    <option value="ИС/б-22-1-о" {{ old('group') === 'ИС/б-22-1-о' ? 'selected' : '' }}>ИС/б-22-1-о</option>
+                    <option value="ИС/б-22-2-о" {{ old('group') === 'ИС/б-22-2-о' ? 'selected' : '' }}>ИС/б-22-2-о</option>
+                    <option value="ПИ/б-22-1-о" {{ old('group') === 'ПИ/б-22-1-о' ? 'selected' : '' }}>ПИ/б-22-1-о</option>
+                    <option value="ПИ/б-22-2-о" {{ old('group') === 'ПИ/б-22-2-о' ? 'selected' : '' }}>ПИ/б-22-2-о</option>
+                    <option value="ПИН/б-22-1-о" {{ old('group') === 'ПИН/б-22-1-о' ? 'selected' : '' }}>ПИН/б-22-1-о</option>
+                    <option value="ПИН/б-22-2-о" {{ old('group') === 'ПИН/б-22-2-о' ? 'selected' : '' }}>ПИН/б-22-2-о</option>
+                    <option value="УТС/б-22-1-о" {{ old('group') === 'УТС/б-22-1-о' ? 'selected' : '' }}>УТС/б-22-1-о</option>
+                    <option value="УТС/б-22-2-о" {{ old('group') === 'УТС/б-22-2-о' ? 'selected' : '' }}>УТС/б-22-2-о</option>
                 </optgroup>
             </select>
 
