@@ -82,8 +82,8 @@
             <textarea id="message" name="message" rows="5">{{ old('message') }}</textarea>
 
             <label for="birthdate">Дата рождения:</label>
-            <input id="birthdate" name="birthdate" placeholder="мм/дд/гггг" type="text" value="{{ old('birthdate') }}">
 
+            <input id="birthdate" name="birthdate" placeholder="мм/дд/гггг" type="text" value="{{ old('birthdate') }}">
             <button type="submit">Отправить</button>
             <button type="reset">Очистить форму</button>
         </form>
