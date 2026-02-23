@@ -1,0 +1,35 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+
+  .item-card {
+    flex: 1 1 calc(25% - #{$spacing-sm});
+    background-color: #e5f0ff;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    @include transition(transform, box-shadow);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    h3 {
+      margin: 0 0 5px 0;
+      font-size: 16px;
+      color: $color-accent;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: $color-text;
+    }
+  }
+}
