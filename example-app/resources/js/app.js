@@ -4,11 +4,9 @@ import './bootstrap';
 import $ from 'jquery';
 window.$ = window.jQuery = $;
 
-// Импортируйте ваши модули
-import './gallery/gallery-init.js';
-import './navigation/navigation-init.js';
-import './footer/dateTime.js';
-import './history-tracker/history-tracker-init.js';
-import './modal/modal-init.js';
-import './popover/engine.js';
-
+await import('./history-tracker/history-tracker-init.js');
+await import('./footer/dateTime.js');
+await import('./navigation/navigation-init.js');
+await import('./gallery/gallery-init.js');
+await import('./popover.js');
+await import('./modal/modal-init.js');

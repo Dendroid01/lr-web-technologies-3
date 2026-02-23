@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    // Константы с данными фотографий
     public const PHOTOS = [
         [
             'src' => 'images/1.jpg',
