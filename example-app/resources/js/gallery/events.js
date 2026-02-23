@@ -1,4 +1,5 @@
-import { closeModal, nextImage, openModal, prevImage } from './modal.js';
+// js/events.js
+import {closeModal, nextImage, openModal, prevImage} from './modal.js';
 
 export function bindEvents() {
     $(document).on('click', '.photo', function () {

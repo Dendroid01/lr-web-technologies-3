@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Персональный сайт Гордиенко Дениса. Фотоальбом</title>
-    <link href="{{ asset('../css/main.min.css') }}" rel="stylesheet">
-    @vite(['resources/js/app.js'])
+    @vite(['resources/css/main.min.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -38,7 +37,6 @@
     </section>
 
     <section class="gallery" id="gallery" data-count="{{ $photoCount }}">
-        {{-- Использование цикла для вывода фотографий --}}
         @foreach($photos as $index => $photo)
             <div class="photo" data-index="{{ $index }}">
                 <img
@@ -83,12 +81,5 @@
     window.assetUrl = '{{ asset('') }}';
 </script>
 
-<script src="{{ asset('../js/jquery-3.7.1.min.js') }}"></script>
-<script src="{{ asset('../js/history-tracker/history-tracker-init.js') }}" type="module"></script>
-<script src="{{ asset('../js/footer/dateTime.js') }}"></script>
-<script src="{{ asset('../js/navigation/navigation-init.js') }}" type="module"></script>
-<script src="{{ asset('../js/gallery/gallery-init.js') }}" type="module"></script>
-<script src="{{ asset('../js/popover.js') }}"></script>
-<script src="{{ asset('../js/modal/modal-init.js') }}" type="module"></script>
 </body>
 </html>
