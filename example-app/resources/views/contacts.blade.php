@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Персональный сайт Гордиенко Дениса. Контакты</title>
-    @vite(['resources/css/main.min.css', 'resources/js/app.js'])
+    @vite(['resources/css/main.min.css', 'resources/js/app.js', 'resources/js/calendar/init-calendar.js'])
 </head>
 
 <body>
@@ -38,7 +38,7 @@
         <p>Данная страница позволяет отправить сообщение на мой персональный почтовый ящик.</p>
     </section>
 
-    <section class="contact-form" id = "">
+    <section class="contact-form">
         @if(session('success'))
             <p class="valid">{{ session('success') }}</p>
         @endif
