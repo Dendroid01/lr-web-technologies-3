@@ -38,7 +38,7 @@
         <p>Данная страница позволяет отправить сообщение на мой персональный почтовый ящик.</p>
     </section>
 
-    <section class="contact-form">
+    <section class="contact-form" id = "">
         @if(session('success'))
             <p class="valid">{{ session('success') }}</p>
         @endif
@@ -83,7 +83,10 @@
 
             <label for="birthdate">Дата рождения:</label>
 
-            <input id="birthdate" name="birthdate" placeholder="мм/дд/гггг" type="text" value="{{ old('birthdate') }}">
+            <div class="birthdate-container">
+                <input id="birthdate" name="birthdate" placeholder="мм/дд/гггг" type="text" value="{{ old('birthdate') }}">
+                <div class="calendar" id="calendar"></div>
+            </div>
             <button type="submit">Отправить</button>
             <button type="reset">Очистить форму</button>
         </form>
