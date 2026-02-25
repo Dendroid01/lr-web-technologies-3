@@ -26,7 +26,6 @@
             <li><a href="{{ url('/study') }}">Учёба</a></li>
             <li><a href="{{ url('/gallery') }}">Фотоальбом</a></li>
             <li><a class="active" href="{{ url('/contacts') }}">Контакты</a></li>
-            <li><a href="{{ url('/test') }}">Тест</a></li>
             <li><a href="{{ url('/history') }}">История просмотра</a></li>
         </ul>
     </nav>
