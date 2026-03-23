@@ -50,9 +50,17 @@
                 </ul>
             @endif
 
-        @if(session('validation_html'))
-            {!! session('validation_html') !!}
-        @endif
+            @if(session('test_output'))
+                @php $output = session('test_output') @endphp
+                <div class="test-results">
+                    <p>Результат: {{ $output->correct }} из {{ $output->total }}</p>
+                    <ul>
+                        @foreach($output->results as $field => $isCorrect)
+                            <li>{{ $field }}: {{ $isCorrect ? 'верно' : 'неверно' }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
         <form action="{{ route('test.submit') }}" method="post">
             @csrf
