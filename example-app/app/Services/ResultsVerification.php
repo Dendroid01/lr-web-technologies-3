@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class ResultsVerification extends CustomFormValidation
+class ResultsVerification
 {
     private array $questionsMap = [
         'q1' => [

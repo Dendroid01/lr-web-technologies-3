@@ -8,7 +8,6 @@ use Illuminate\Validation\Rule;
 class TestFormRequest extends FormRequest
 {
     private array $allowedGroups = [
-
         'ИБ/б-25-1-о', 'ИБ/б-25-2-о', 'ИИ/б-25-1-о', 'ИИ/б-25-2-о',
         'ИИ/б-25-3-о', 'ИИ/б-25-4-о', 'ИИ/б-25-5-о', 'ИИ/б-25-6-о',
         'ИИ/б-25-7-о', 'ИИ/б-25-8-о', 'УТС/б-25-1-о', 'ЦТ/б-25-1-о',
@@ -48,17 +47,41 @@ class TestFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'fullname' => ['required|string', 'regex:/^[А-Яа-яЁё]+\s[А-Яа-яЁё]+\s[А-Яа-яЁё]+$/u'],
+            'fullname' => [
+                'required',
+                'string',
+                'regex:/^[А-Яа-яЁё]+\s[А-Яа-яЁё]+\s[А-Яа-яЁё]+$/u',
+            ],
 
             'group' => ['required', Rule::in($this->allowedGroups)],
 
-            'q1' => ['required'],
+            'q1' => ['required', 'string'],
 
-            'q2' => ['required','array','size:2'],
-            'q2.*' => [Rule::in($this->allowedQ2Answers)],
+            'q2'   => ['required', 'array', 'size:2'],
+            'q2.*' => ['string', Rule::in($this->allowedQ2Answers)],
 
-            'q3' => ['required',Rule::in($this->allowedQ3Answers)],
+            'q3' => ['required', 'string', Rule::in($this->allowedQ3Answers)],
+        ];
+    }
 
+    public function messages(): array
+    {
+        return [
+            'fullname.required' => 'Введите ФИО.',
+            'fullname.regex'    => 'ФИО должно содержать три слова на кириллице.',
+
+            'group.required' => 'Выберите группу.',
+            'group.in'       => 'Выбранная группа недопустима.',
+
+            'q1.required' => 'Введите ответ на первый вопрос.',
+
+            'q2.required' => 'Выберите ответы на второй вопрос.',
+            'q2.array'    => 'Некорректный формат ответа на второй вопрос.',
+            'q2.size'     => 'Необходимо выбрать ровно 2 варианта.',
+            'q2.*.in'     => 'Один из выбранных ответов недопустим.',
+
+            'q3.required' => 'Выберите ответ на третий вопрос.',
+            'q3.in'       => 'Выбранный ответ недопустим.',
         ];
     }
 }

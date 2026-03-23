@@ -42,9 +42,13 @@
             <p class="valid">{{ session('success') }}</p>
         @endif
 
-        @if(session('validation_html'))
-            {!! session('validation_html') !!}
-        @endif
+            @if ($errors->any())
+                <ul class="form-errors">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
 
         <form action="{{ route('contacts.submit') }}" method="post">
             @csrf
