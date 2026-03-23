@@ -14,7 +14,7 @@ class PhotoController extends Controller
 
         return view('gallery', compact('photos', 'photoCount'));
     }
-
+//Laravel class collection у класса есть метод paginate
     public function show($id)
     {
         $photo = Photo::getPhotoByIndex((int) $id);

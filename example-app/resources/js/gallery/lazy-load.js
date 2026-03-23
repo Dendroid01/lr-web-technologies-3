@@ -1,4 +1,3 @@
-// js/lazy-load.js
 export function initLazyLoading() {
     const $lazyImages = $('img[data-src]');
     const observer = new IntersectionObserver((entries) => {

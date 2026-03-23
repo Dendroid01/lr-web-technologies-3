@@ -1,4 +1,3 @@
-// js/events.js
 import {closeModal, nextImage, openModal, prevImage} from './modal.js';
 
 export function bindEvents() {

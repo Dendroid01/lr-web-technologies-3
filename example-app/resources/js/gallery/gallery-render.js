@@ -1,4 +1,5 @@
 export function renderGallery(galleryData) {
+
     const $gallery = $('#gallery').empty();
 
     galleryData.forEach((item, index) => {

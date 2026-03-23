@@ -1,4 +1,4 @@
-export const galleryData = [
+/*export const galleryData = [
     {
         src: "images/1.jpg",
         title: "Роберт Де Ниро",
@@ -74,4 +74,4 @@ export const galleryData = [
         title: "Марго Робби",
         hoverText: "Марго Робби: актриса и продюсер"
     }
-];
+];*/

@@ -1,5 +1,4 @@
-// js/modal.js
-import {galleryData} from './gallery-data.js';
+//import {galleryData} from './gallery-data.js';
 
 let currentIndex = 0;
 const $modal = $('#photo-modal');

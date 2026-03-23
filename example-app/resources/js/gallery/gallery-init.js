@@ -1,4 +1,4 @@
-import {galleryData} from './gallery-data.js';
+// import {galleryData} from './gallery-data.js';
 import {renderGallery} from './gallery-render.js';
 import {initModal} from './modal.js';
 import {bindEvents} from './events.js';
