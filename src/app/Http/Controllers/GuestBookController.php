@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GuestBookRequest;
 use App\Models\GuestBookMessage;
+use App\Http\Requests\GuestBookImportRequest;
+use App\Services\GuestBookImportService;
 
 class GuestBookController extends Controller
 {
@@ -23,4 +25,14 @@ class GuestBookController extends Controller
         return redirect()->route('guest-book.index')
             ->with('success', 'Ваш отзыв успешно добавлен!');
     }
+
+    public function import(GuestBookImportRequest $request, GuestBookImportService $importService)
+    {
+        $stats = $importService->import($request->file('file'));
+
+        return redirect()->route('guest-book.index')
+            ->with('success', "Импортировано: {$stats['imported']}, пропущено: {$stats['skipped']}");
+    }
 }
+
+

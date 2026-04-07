@@ -18,7 +18,7 @@ export default defineConfig({
             protocol: 'ws',
         },
         watch: {
-            usePolling: true,
+            usePolling: false,
             ignored: ['**/storage/framework/views/**'],
         },
     },

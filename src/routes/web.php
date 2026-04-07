@@ -36,5 +36,6 @@ Route::get('/history', function () {
     return view('history');
 })->name('history');
 
+Route::post('/guest-book/import', [GuestBookController::class, 'import'])->name('guest-book.import.store');
 Route::get('/guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
 Route::post('/guest-book', [GuestBookController::class, 'store'])->name('guest-book.store');

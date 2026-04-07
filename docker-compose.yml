@@ -40,17 +40,6 @@ services:
       - "3306:3306"
     networks:
       - app_network
-  node:
-    image: node:20-alpine
-    container_name: node
-    working_dir: /var/www
-    volumes:
-      - ./src:/var/www
-    ports:
-      - "5173:5173"
-    command: sh -c "npm install && npm run dev"
-    networks:
-      - app_network
 
 networks:
   app_network:

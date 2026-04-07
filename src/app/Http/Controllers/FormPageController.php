@@ -19,7 +19,6 @@ class FormPageController extends Controller
 
     public function submitContacts(ContactFormRequest $request): RedirectResponse
     {
-        // Сюда код дойдёт только если валидация прошла
         return back()->with('success', 'Форма контактов успешно прошла валидацию на сервере.');
     }
 
