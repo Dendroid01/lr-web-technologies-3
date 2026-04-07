@@ -1,37 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Персональный сайт Гордиенко Дениса. Контакты</title>
-    @vite(['resources/css/main.min.css', 'resources/js/app.js', 'resources/js/calendar/init-calendar.js'])
-</head>
+@section('title', 'Контакты')
 
-<body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="{{ url('/') }}">Главная страница</a></li>
-            <li><a href="{{ url('/about') }}">Обо мне</a></li>
-            <li class="dropdown">
-                <a class="dropdown-link" href="{{ url('/interests') }}">Мои интересы</a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ url('/interests#hobby') }}">Моё хобби</a></li>
-                    <li><a href="{{ url('/interests#books') }}">Любимые книги</a></li>
-                    <li><a href="{{ url('/interests#music') }}">Любимая музыка</a></li>
-                    <li><a href="{{ url('/interests#films') }}">Любимые фильмы</a></li>
-                </ul>
-            </li>
-            <li><a href="{{ url('/study') }}">Учёба</a></li>
-            <li><a href="{{ url('/gallery') }}">Фотоальбом</a></li>
-            <li><a class="active" href="{{ url('/contacts') }}">Контакты</a></li>
-            <li><a href="{{ url('/history') }}">История просмотра</a></li>
-        </ul>
-    </nav>
-</header>
+@push('styles')
+    @vite(['resources/js/calendar/init-calendar.js'])
+@endpush
 
-<main>
+@section('content')
     <section class="page-title">
         <h1>Контакты</h1>
         <p>Данная страница позволяет отправить сообщение на мой персональный почтовый ящик.</p>
@@ -42,13 +17,13 @@
             <p class="valid">{{ session('success') }}</p>
         @endif
 
-            @if ($errors->any())
-                <ul class="form-errors">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
+        @if ($errors->any())
+            <ul class="form-errors">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
 
         <form action="{{ route('contacts.submit') }}" method="post">
             @csrf
@@ -85,22 +60,13 @@
             <textarea id="message" name="message" rows="5">{{ old('message') }}</textarea>
 
             <label for="birthdate">Дата рождения:</label>
-
             <div class="birthdate-container">
                 <input id="birthdate" name="birthdate" placeholder="мм/дд/гггг" type="text" value="{{ old('birthdate') }}">
                 <div class="calendar" id="calendar"></div>
             </div>
+
             <button type="submit">Отправить</button>
             <button type="reset">Очистить форму</button>
         </form>
     </section>
-</main>
-
-<footer>
-    <div class="footer-content">
-        <p>&copy; Gordienko D.O, 2025</p>
-        <div class="datetime" id="datetime"></div>
-    </div>
-</footer>
-</body>
-</html>
+@endsection

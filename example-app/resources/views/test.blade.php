@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Персональный сайт Гордиенко Дениса. Тест по дисциплине «Физика»</title>
-    @vite(['resources/css/main.min.css', 'resources/js/app.js'])
-</head>
+@section('title', 'Тест по дисциплине «Физика»')
 
-<body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="{{ url('/') }}">Главная страница</a></li>
-            <li><a href="{{ url('/about') }}">Обо мне</a></li>
-            <li class="dropdown">
-                <a class="dropdown-link" href="{{ url('/interests') }}">Мои интересы</a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ url('/interests#hobby') }}">Моё хобби</a></li>
-                    <li><a href="{{ url('/interests#books') }}">Любимые книги</a></li>
-                    <li><a href="{{ url('/interests#music') }}">Любимая музыка</a></li>
-                    <li><a href="{{ url('/interests#films') }}">Любимые фильмы</a></li>
-                </ul>
-            </li>
-            <li><a href="{{ url('/study') }}">Учёба</a></li>
-            <li><a href="{{ url('/gallery') }}">Фотоальбом</a></li>
-            <li><a href="{{ url('/contacts') }}">Контакты</a></li>
-            <li><a href="{{ url('/history') }}">История просмотра</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
+@section('content')
     <section class="page-title">
         <h1>Тест по дисциплине «Физика»</h1>
         <p>Пожалуйста, заполните форму и ответьте на вопросы.</p>
@@ -42,25 +13,25 @@
             <p class="valid">{{ session('success') }}</p>
         @endif
 
-            @if ($errors->any())
-                <ul class="form-errors">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+        @if ($errors->any())
+            <ul class="form-errors">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+
+        @if(session('test_output'))
+            @php $output = session('test_output') @endphp
+            <div class="test-results">
+                <p>Результат: {{ $output->correct }} из {{ $output->total }}</p>
+                <ul>
+                    @foreach($output->results as $field => $isCorrect)
+                        <li>{{ $field }}: {{ $isCorrect ? 'верно' : 'неверно' }}</li>
                     @endforeach
                 </ul>
-            @endif
-
-            @if(session('test_output'))
-                @php $output = session('test_output') @endphp
-                <div class="test-results">
-                    <p>Результат: {{ $output->correct }} из {{ $output->total }}</p>
-                    <ul>
-                        @foreach($output->results as $field => $isCorrect)
-                            <li>{{ $field }}: {{ $isCorrect ? 'верно' : 'неверно' }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            </div>
+        @endif
 
         <form action="{{ route('test.submit') }}" method="post">
             @csrf
@@ -165,13 +136,4 @@
             <button type="reset">Очистить форму</button>
         </form>
     </section>
-</main>
-
-<footer>
-    <div class="footer-content">
-        <p>&copy; Gordienko D.O, 2025</p>
-        <div class="datetime" id="datetime"></div>
-    </div>
-</footer>
-</body>
-</html>
+@endsection
