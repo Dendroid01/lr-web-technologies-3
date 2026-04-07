@@ -8,13 +8,14 @@
     @stack('styles')
 </head>
 <body>
-<x-header />
+    <div class="main-content">
+        <x-sidebar />
 
-<main>
-    @yield('content')
-</main>
+        <main style="padding: 20px;">
+            @yield('content')
+        </main>
 
-<x-footer />
+</div>
 
 @stack('scripts')
 </body>

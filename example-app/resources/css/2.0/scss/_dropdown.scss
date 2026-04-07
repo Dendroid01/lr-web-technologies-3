@@ -1,42 +1,65 @@
-@use 'variables' as *;
-@use 'mixins' as *;
+.sidebar {
+    position: relative;
 
-.dropdown {
-  position: relative;
+    .dropdown {
+        position: relative;
 
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: $color-black;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 2px solid $color-white;
-    z-index: 1000;
-
-    &.active {
-      display: block;
-    }
-
-    li {
-      a {
-        display: block;
-        padding: 12px 15px;
-        text-align: left;
-        color: $color-white;
-        text-decoration: none;
-        border-bottom: 1px solid #333;
-        font-size: $font-size-sm;
-        @include transition(all);
-
-        &:hover {
-          background-color: rgba($color-black, 0.8);
-          padding-left: 20px;
+        .dropdown-arrow {
+            margin-left: auto;
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
         }
-      }
+
+        // Дропдаун меню - появляется СПРАВА от кнопки
+        .dropdown-menu {
+            position: fixed;
+            left: 100%; // Появляется справа от сайдбара
+            top: 0;
+            min-width: 200px;
+            background: linear-gradient(135deg, #1e2a3a 0%, #0f172a 100%);
+            border-radius: 12px;
+            padding: 8px 0;
+            margin: 0;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            &.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0);
+            }
+
+            li {
+                margin: 0;
+
+                a {
+                    display: block;
+                    padding: 10px 20px;
+                    color: #e2e8f0;
+                    text-decoration: none;
+                    font-size: 0.875rem;
+                    transition: all 0.2s ease;
+                    white-space: nowrap;
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.1);
+                        padding-left: 25px;
+                        color: #60a5fa;
+                    }
+
+                    &.active {
+                        background: linear-gradient(90deg, rgba(96, 165, 250, 0.15), transparent);
+                        color: #60a5fa;
+                        border-left: 3px solid #60a5fa;
+                    }
+                }
+            }
+        }
     }
-  }
 }
