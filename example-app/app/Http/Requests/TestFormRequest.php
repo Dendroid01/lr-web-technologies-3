@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 
 class TestFormRequest extends FormRequest
 {
-    private array $allowedGroups = [
+    const ALLOWED_GROUPS = [
         'ИБ/б-25-1-о', 'ИБ/б-25-2-о', 'ИИ/б-25-1-о', 'ИИ/б-25-2-о',
         'ИИ/б-25-3-о', 'ИИ/б-25-4-о', 'ИИ/б-25-5-о', 'ИИ/б-25-6-о',
         'ИИ/б-25-7-о', 'ИИ/б-25-8-о', 'УТС/б-25-1-о', 'ЦТ/б-25-1-о',
@@ -25,14 +25,14 @@ class TestFormRequest extends FormRequest
         'ПИН/б-22-1-о', 'ПИН/б-22-2-о', 'УТС/б-22-1-о', 'УТС/б-22-2-о',
     ];
 
-    private array $allowedQ2Answers = [
+    const ALLOWED_Q2_ANSWERS = [
         'Сила',
         'Масса',
         'Скорость',
         'Время',
     ];
 
-    private array $allowedQ3Answers = [
+    const ALLOWED_Q3_ANSWERS = [
         'Закон Ньютона',
         'Закон сохранения импульса',
         'Закон Ома',
@@ -53,14 +53,14 @@ class TestFormRequest extends FormRequest
                 'regex:/^[А-Яа-яЁё]+\s[А-Яа-яЁё]+\s[А-Яа-яЁё]+$/u',
             ],
 
-            'group' => ['required', Rule::in($this->allowedGroups)],
+            'group' => ['required', Rule::in(SELF::ALLOWED_GROUPS)],
 
             'q1' => ['required', 'string'],
 
             'q2'   => ['required', 'array', 'size:2'],
-            'q2.*' => ['string', Rule::in($this->allowedQ2Answers)],
+            'q2.*' => ['string', Rule::in(SELF::ALLOWED_Q2_ANSWERS)],
 
-            'q3' => ['required', 'string', Rule::in($this->allowedQ3Answers)],
+            'q3' => ['required', 'string', Rule::in(SELF::ALLOWED_Q3_ANSWERS)],
         ];
     }
 
