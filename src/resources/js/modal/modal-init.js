@@ -1,7 +1,8 @@
 import {initModal} from './core.js';
-import {addModalTriggers} from './triggers.js';
+import {addModalTriggers, initTriggers, bindModalTriggerListener} from './triggers.js';
 
 $(document).ready(function () {
     initModal();
     addModalTriggers();
+    initTriggers();
 });

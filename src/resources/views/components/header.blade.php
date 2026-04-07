@@ -15,6 +15,7 @@
             <li><a href="{{ url('/study') }}" @if(request()->is('study')) class="active" @endif>Учёба</a></li>
             <li><a href="{{ url('/gallery') }}" @if(request()->is('gallery')) class="active" @endif>Фотоальбом</a></li>
             <li><a href="{{ url('/contacts') }}" @if(request()->is('contacts')) class="active" @endif>Контакты</a></li>
+            <li><a href="{{ url('/guest-book') }}" @if(request()->is('guest-book')) class="active" @endif>Книга отзывов</a></li>
             <li><a href="{{ url('/history') }}" @if(request()->is('history')) class="active" @endif>История просмотра</a></li>
         </ul>
     </nav>

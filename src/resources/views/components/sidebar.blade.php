@@ -39,6 +39,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('/guest-book') }}" class="sidebar-link {{ request()->is('guest-book') ? 'active' : '' }}" data-page="guest-book">
+                    <span class="nav-text">Книга отзывов</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ url('/history') }}" class="sidebar-link {{ request()->is('history') ? 'active' : '' }}" data-page="history">
                     <span class="nav-text">История</span>
                 </a>

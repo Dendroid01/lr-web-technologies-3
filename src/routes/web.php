@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FormPageController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\GuestBookController;
 use App\Models\Interest;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,6 @@ Route::post('/test', [FormPageController::class, 'submitTest'])->name('test.subm
 Route::get('/history', function () {
     return view('history');
 })->name('history');
+
+Route::get('/guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
+Route::post('/guest-book', [GuestBookController::class, 'store'])->name('guest-book.store');
