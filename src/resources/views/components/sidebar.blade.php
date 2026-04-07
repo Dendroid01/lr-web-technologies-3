@@ -43,6 +43,12 @@
                     <span class="nav-text">Книга отзывов</span>
                 </a>
             </li>
+
+            <li>
+                <a href="{{ url('/guest-book/import') }}" class="sidebar-link {{ request()->is('importPage') ? 'active' : '' }}" data-page="importPage">
+                    <span class="nav-text">Редактор книги отзывов</span>
+                </a>
+            </li>
             <li>
                 <a href="{{ url('/history') }}" class="sidebar-link {{ request()->is('history') ? 'active' : '' }}" data-page="history">
                     <span class="nav-text">История</span>

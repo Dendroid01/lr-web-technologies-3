@@ -203,3 +203,43 @@
         display: block;
     }
 }
+
+.back-link-wrapper {
+    margin-top: $spacing-lg;
+    padding-top: $spacing-md;
+    border-top: 1px solid rgba(90, 62, 54, 0.2);
+    text-align: center;
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background-color: transparent;
+        color: #5a3e36;
+        text-decoration: none;
+        font-weight: $font-weight-bold;
+        font-size: 15px;
+        border-radius: 8px;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: rgba(90, 62, 54, 0.1);
+            transform: translateX(-3px);
+        }
+
+        &:active {
+            transform: translateX(0);
+        }
+
+        &::before {
+            content: "←";
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        &:hover::before {
+            transform: translateX(-3px);
+        }
+    }
+}

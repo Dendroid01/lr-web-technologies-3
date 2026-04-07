@@ -26,6 +26,10 @@ class GuestBookController extends Controller
             ->with('success', 'Ваш отзыв успешно добавлен!');
     }
 
+    public function importPage()
+    {
+        return view('guest-book-import');
+    }
     public function import(GuestBookImportRequest $request, GuestBookImportService $importService)
     {
         $stats = $importService->import($request->file('file'));
