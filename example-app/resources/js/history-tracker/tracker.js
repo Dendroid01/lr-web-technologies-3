@@ -35,6 +35,11 @@ export const HistoryTracker = {
 
     getCurrentPage() {
         const path = window.location.pathname;
-        return path.split('/').pop() || 'index.html';
+        let page = path.replace(/^\//,'')
+
+        if(page === ''){
+            page = '/';
+        }
+        return page
     }
 };

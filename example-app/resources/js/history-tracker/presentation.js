@@ -16,14 +16,17 @@ export const HistoryPresentation = {
 
     getPageDisplayName(pageId) {
         const pageNames = {
+            '/': 'Главная страница',
+            '': 'Главная страница',
             'index.html': 'Главная страница',
-            'about.html': 'Обо мне',
-            'interests.html': 'Мои интересы',
-            'study.html': 'Учёба',
-            'gallery.html': 'Фотоальбом',
-            'contacts.html': 'Контакты',
-            'history.html': 'История просмотра',
-            'test.html': 'Тест по физике'
+            'index': 'Главная страница',
+            'about': 'Обо мне',
+            'interests': 'Мои интересы',
+            'study': 'Учёба',
+            'gallery': 'Фотоальбом',
+            'contacts': 'Контакты',
+            'history': 'История просмотра',
+            'test': 'Тест по физике'
         };
         return pageNames[pageId] || pageId;
     }

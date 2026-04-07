@@ -3,7 +3,7 @@ import {HistoryPresentation} from './presentation.js';
 
 export const HistoryUI = {
     init() {
-        if (!window.location.pathname.includes('history.html')) return;
+        if (!window.location.pathname.includes('history')) return;
         this.renderTables();
         this.bindEvents();
     },
