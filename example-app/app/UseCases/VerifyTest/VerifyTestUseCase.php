@@ -23,11 +23,8 @@ class VerifyTestUseCase
         $total   = count($this->verifier->VerificationResults);
         $correct = $this->verifier->countCorrectAnswers();
 
-        $results = [];
-        foreach ($this->verifier->VerificationResults as $result) {
-            [$field, $verdict] = explode(': ', $result, 2);
-            $results[$field] = $verdict === 'верно';
-        }
+        //сделать вердикт булевым
+        $results = $this->verifier->VerificationResults;
 
         return new VerifyTestOutput(
             total:   $total,
@@ -36,3 +33,5 @@ class VerifyTestUseCase
         );
     }
 }
+//ПРИ ВЫПОЛНЕНИИ ЛР2 НЕ НУЖНО ПИСАТЬ КЛАСС ACTIVERECORD
+//ОРГАНИЗОВАТЬ ГОСТЕВУЮ СТРАНИЧКУ В БД, ИМПОРТ CSV ФАЙЛА С СОХРАНЕНИЕМ ИДЕМПОТЕНТНОСТИ
