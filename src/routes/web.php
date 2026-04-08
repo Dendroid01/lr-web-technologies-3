@@ -4,6 +4,7 @@ use App\Http\Controllers\FormPageController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\TestResultsController;
+use App\Http\Controllers\BlogController;
 use App\Models\Interest;
 use Illuminate\Support\Facades\Route;
 
@@ -43,3 +44,9 @@ Route::get('/guest-book', [GuestBookController::class, 'index'])->name('guest-bo
 Route::post('/guest-book', [GuestBookController::class, 'store'])->name('guest-book.store');
 
 Route::get('/test/results', [TestResultsController::class, 'index'])->name('test.results');
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/editor', [BlogController::class, 'editor'])->name('blog.editor');
+Route::post('/blog/editor', [BlogController::class, 'store'])->name('blog.store');
+Route::get('/blog/import', [BlogController::class, 'importPage'])->name('blog.import');
+Route::post('/blog/import', [BlogController::class, 'import'])->name('blog.import.store');

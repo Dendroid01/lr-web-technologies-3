@@ -71,6 +71,24 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('/blog') }}"
+                   class="sidebar-link {{ request()->is('blog.index') ? 'active' : '' }}" data-page="blog.index">
+                    <span class="nav-text">Блог</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/blog/editor') }}"
+                   class="sidebar-link {{ request()->is('blog.editor') ? 'active' : '' }}" data-page="blog.editor">
+                    <span class="nav-text">Редактор блога</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/blog/import') }}"
+                   class="sidebar-link {{ request()->is('blog.import') ? 'active' : '' }}" data-page="blog.import">
+                    <span class="nav-text">Импорт блога из файла</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ url('/history') }}" class="sidebar-link {{ request()->is('history') ? 'active' : '' }}"
                    data-page="history">
                     <span class="nav-text">История</span>
