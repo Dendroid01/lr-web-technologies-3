@@ -23,7 +23,7 @@ class GuestBookController extends Controller
         ]);
 
         return redirect()->route('guest-book.index')
-            ->with('success', 'Ваш отзыв успешно добавлен!');
+            ->with('success', true);
     }
 
     public function importPage()
@@ -35,7 +35,7 @@ class GuestBookController extends Controller
         $stats = $importService->import($request->file('file'));
 
         return redirect()->route('guest-book.index')
-            ->with('success', "Импортировано: {$stats['imported']}, пропущено: {$stats['skipped']}");
+            ->with('import_stats', $stats);
     }
 }
 
