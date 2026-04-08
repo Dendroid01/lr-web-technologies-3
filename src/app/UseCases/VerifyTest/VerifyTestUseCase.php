@@ -3,36 +3,35 @@
 namespace App\UseCases\VerifyTest;
 
 use App\Services\ResultsVerification;
+use App\Repositories\TestResultRepositoryInterface;
 
 class VerifyTestUseCase
 {
     public function __construct(
-        private readonly ResultsVerification $verifier,
-    ) {}
+        private readonly ResultsVerification           $verifier,
+        private readonly TestResultRepositoryInterface $repository
+    )
+    {
+    }
 
     public function execute(VerifyTestInput $input): VerifyTestOutput
     {
-        $data = [
-            'q1' => $input->q1,
-            'q2' => $input->q2,
-            'q3' => $input->q3,
-        ];
+        $answers = $input->answers();
 
-        $this->verifier->verifyAnswers($data);
+        $results = $this->verifier->verify($answers);
 
-        $total   = count($this->verifier->VerificationResults);
-        $correct = $this->verifier->countCorrectAnswers();
+        $total = count($results);
+        $correct = $this->verifier->countCorrect($results);
 
-        $results = [];
-        foreach ($this->verifier->VerificationResults as $result) {
-            [$field, $verdict] = explode(': ', $result, 2);
-            $results[$field] = $verdict === 'верно';
-        }
-
-        return new VerifyTestOutput(
-            total:   $total,
-            correct: $correct,
-            results: $results,
+        $this->repository->save(
+            $input->fullname,
+            $input->group,
+            $answers,
+            $results,
+            $total,
+            $correct
         );
+
+        return new VerifyTestOutput($total, $correct, $results);
     }
 }

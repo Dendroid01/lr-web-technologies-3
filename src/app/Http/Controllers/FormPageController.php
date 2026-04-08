@@ -27,7 +27,7 @@ class FormPageController extends Controller
         return view('test');
     }
 
-    public function submitTest(TestFormRequest $request): RedirectResponse
+    public function submitTest(TestFormRequest $request, VerifyTestUseCase $useCase): RedirectResponse
     {
         $input = new VerifyTestInput(
             fullname: $request->input('fullname'),
@@ -37,7 +37,7 @@ class FormPageController extends Controller
             q3: $request->input('q3'),
         );
 
-        $output = (new VerifyTestUseCase(new ResultsVerification()))->execute($input);
+        $output = $useCase->execute($input);
 
         return back()
             ->withInput()

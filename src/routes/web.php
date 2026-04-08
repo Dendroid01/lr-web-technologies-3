@@ -3,6 +3,7 @@
 use App\Http\Controllers\FormPageController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\GuestBookController;
+use App\Http\Controllers\TestResultsController;
 use App\Models\Interest;
 use Illuminate\Support\Facades\Route;
 
@@ -40,3 +41,5 @@ Route::get('/guest-book/import', [GuestBookController::class, 'importPage'])->na
 Route::post('/guest-book/import', [GuestBookController::class, 'import'])->name('guest-book.import.store');
 Route::get('/guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
 Route::post('/guest-book', [GuestBookController::class, 'store'])->name('guest-book.store');
+
+Route::get('/test/results', [TestResultsController::class, 'index'])->name('test.results');
