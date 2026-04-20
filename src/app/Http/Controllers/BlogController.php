@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BlogPostRequest;
 use App\Http\Requests\BlogImportRequest;
 use App\Models\BlogPost;
+use App\Services\BlogImportService;
 
 class BlogController extends Controller
 {
@@ -41,66 +42,11 @@ class BlogController extends Controller
         return view('blog.import');
     }
 
-    public function import(BlogImportRequest $request)
+    public function import(BlogImportRequest $request, BlogImportService $importService)
     {
-        $file     = $request->file('file');
-        $imported = 0;
-        $skipped  = 0;
-
-        if (($handle = fopen($file->getPathname(), 'r')) !== false) {
-            fgetcsv($handle, 1000, ',');
-
-            while (($row = fgetcsv($handle, 1000, ',')) !== false) {
-                if (count($row) < 4) {
-                    $skipped++;
-                    continue;
-                }
-
-                [$title, $message, $author, $created_at] = array_map('trim', $row);
-
-                $validator = \Validator::make([
-                    'title'   => $title,
-                    'message' => $message,
-                    'author'  => $author,
-                ], (new \App\Http\Requests\BlogPostRequest())->rules());
-
-                if ($validator->fails()) {
-                    $skipped++;
-                    continue;
-                }
-
-                try {
-                    $created_at = \Carbon\Carbon::parse($created_at);
-                } catch (\Exception $e) {
-                    $skipped++;
-                    continue;
-                }
-
-                $exists = BlogPost::where('title', $title)
-                    ->where('author', $author)
-                    ->where('created_at', $created_at)
-                    ->exists();
-
-                if ($exists) {
-                    $skipped++;
-                    continue;
-                }
-
-                BlogPost::create([
-                    'title'      => $title,
-                    'message'    => $message,
-                    'author'     => $author,
-                    'created_at' => $created_at,
-                    'image'      => null,
-                ]);
-
-                $imported++;
-            }
-
-            fclose($handle);
-        }
+        $stats = $importService->import($request->file('file'));
 
         return redirect()->route('blog.import')
-            ->with('success', "Импортировано: {$imported}, пропущено: {$skipped}");
+            ->with('success', "Импортировано: {$stats['imported']}, пропущено: {$stats['skipped']}");
     }
 }
