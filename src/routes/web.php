@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogEditorController;
+use App\Http\Controllers\BlogImportController;
 use App\Http\Controllers\FormPageController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\GuestBookImportController;
 use App\Http\Controllers\TestResultsController;
-use App\Http\Controllers\BlogController;
 use App\Models\Interest;
 use Illuminate\Support\Facades\Route;
 
@@ -46,8 +48,10 @@ Route::post('/guest-book', [GuestBookController::class, 'store'])->name('guest-b
 
 Route::get('/test/results', [TestResultsController::class, 'index'])->name('test.results');
 
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/editor', [BlogController::class, 'editor'])->name('blog.editor');
-Route::post('/blog/editor', [BlogController::class, 'store'])->name('blog.store');
-Route::get('/blog/import', [BlogController::class, 'importPage'])->name('blog.import');
-Route::post('/blog/import', [BlogController::class, 'import'])->name('blog.import.store');
+Route::prefix('blog')->name('blog.')->group(function () {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::get('/editor', [BlogEditorController::class, 'editor'])->name('editor');
+    Route::post('/editor', [BlogEditorController::class, 'store'])->name('store');
+    Route::get('/import', [BlogImportController::class, 'importPage'])->name('import');
+    Route::post('/import', [BlogImportController::class, 'import'])->name('import.store');
+});

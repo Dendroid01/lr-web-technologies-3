@@ -6,7 +6,9 @@
             <h1>Редактор Блога</h1>
 
             @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <p class="valid">
+                    Ваш пост успешно добавлен!
+                </p>
             @endif
 
             <div class="blog-editor-form">

@@ -3,6 +3,12 @@
 @section('content')
     <div class="container">
         <section class="blog-posts">
+            @if(session('import_stats'))
+                <p class="valid">
+                    Импортировано: {{ session('import_stats.imported') }},
+                    пропущено: {{ session('import_stats.skipped') }}
+                </p>
+            @endif
             <h1>Мой Блог</h1>
 
             @forelse($posts as $post)
