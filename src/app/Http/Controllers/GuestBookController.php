@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GuestBookRequest;
 use App\Models\GuestBookMessage;
-use App\Http\Requests\GuestBookImportRequest;
-use App\Services\GuestBookImportService;
 
 class GuestBookController extends Controller
 {
@@ -25,18 +23,4 @@ class GuestBookController extends Controller
         return redirect()->route('guest-book.index')
             ->with('success', true);
     }
-
-    public function importPage()
-    {
-        return view('guest-book-import');
-    }
-    public function import(GuestBookImportRequest $request, GuestBookImportService $importService)
-    {
-        $stats = $importService->import($request->file('file'));
-
-        return redirect()->route('guest-book.index')
-            ->with('import_stats', $stats);
-    }
 }
-
-

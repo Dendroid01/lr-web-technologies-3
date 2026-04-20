@@ -3,6 +3,7 @@
 use App\Http\Controllers\FormPageController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\GuestBookController;
+use App\Http\Controllers\GuestBookImportController;
 use App\Http\Controllers\TestResultsController;
 use App\Http\Controllers\BlogController;
 use App\Models\Interest;
@@ -38,8 +39,8 @@ Route::get('/history', function () {
     return view('history');
 })->name('history');
 
-Route::get('/guest-book/import', [GuestBookController::class, 'importPage'])->name('guest-book.import');
-Route::post('/guest-book/import', [GuestBookController::class, 'import'])->name('guest-book.import.store');
+Route::get('/guest-book/import', [GuestBookImportController::class, 'importPage'])->name('guest-book.import');
+Route::post('/guest-book/import', [GuestBookImportController::class, 'import'])->name('guest-book.import.store');
 Route::get('/guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
 Route::post('/guest-book', [GuestBookController::class, 'store'])->name('guest-book.store');
 
