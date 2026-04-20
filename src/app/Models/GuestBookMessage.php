@@ -14,10 +14,18 @@ class GuestBookMessage extends Model
         'middle_name',
         'email',
         'message',
+        'message_hash',
         'created_at',
     ];
 
     protected $casts = [
         'created_at' => 'datetime',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->message_hash = hash('sha256', $model->message);
+        });
+    }
 }

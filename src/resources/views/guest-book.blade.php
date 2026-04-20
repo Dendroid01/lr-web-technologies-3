@@ -17,7 +17,8 @@
             @if(session('import_stats'))
                 <p class="valid">
                     Импортировано: {{ session('import_stats.imported') }},
-                    пропущено: {{ session('import_stats.skipped') }}
+                    пропущено: {{ session('import_stats.skipped') }},
+                    обновлено: {{ session('import_stats.updated') }}
                 </p>
             @endif
 

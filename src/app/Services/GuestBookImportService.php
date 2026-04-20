@@ -13,7 +13,8 @@ class GuestBookImportService
     public function import($file): array
     {
         $imported = 0;
-        $skipped  = 0;
+        $skipped = 0;
+        $updated = 0;
 
         DB::beginTransaction();
 
@@ -50,26 +51,29 @@ class GuestBookImportService
                         continue;
                     }
 
-                    $exists = GuestBookMessage::where('email', $email)
-                        ->whereDate('created_at', $createdAt)
-                        ->where('message', $message)
-                        ->exists();
+                    $messageHash = hash('sha256', $message);
+                    $existing = GuestBookMessage::where('message_hash', $messageHash)->first();
 
-                    if ($exists) {
-                        $skipped++;
-                        continue;
+                    if ($existing) {
+                        $existing->update([
+                            'last_name'   => $last_name,
+                            'first_name'  => $first_name,
+                            'middle_name' => $middle_name,
+                            'email'       => $email,
+                            'created_at'  => $createdAt,
+                        ]);
+                        $updated++;
+                    } else {
+                        GuestBookMessage::create([
+                            'created_at'  => $createdAt,
+                            'last_name'   => $last_name,
+                            'first_name'  => $first_name,
+                            'middle_name' => $middle_name,
+                            'email'       => $email,
+                            'message'     => $message,
+                        ]);
+                        $imported++;
                     }
-
-                    GuestBookMessage::create([
-                        'created_at'  => $createdAt,
-                        'last_name'   => $last_name,
-                        'first_name'  => $first_name,
-                        'middle_name' => $middle_name,
-                        'email'       => $email,
-                        'message'     => $message,
-                    ]);
-
-                    $imported++;
                 }
 
                 fclose($handle);
@@ -84,6 +88,7 @@ class GuestBookImportService
         return [
             'imported' => $imported,
             'skipped'  => $skipped,
+            'updated'  => $updated,
         ];
     }
 }
