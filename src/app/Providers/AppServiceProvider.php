@@ -17,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
             TestResultRepositoryInterface::class,
             EloquentTestResultRepository::class
         );
+
+        $this->app->bind(
+            ResultsVerificationInterface::class,
+            ResultsVerification::class
+        );
     }
 
     /**

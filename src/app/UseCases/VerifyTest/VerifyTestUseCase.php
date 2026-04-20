@@ -8,7 +8,7 @@ use App\Repositories\TestResultRepositoryInterface;
 class VerifyTestUseCase
 {
     public function __construct(
-        private readonly ResultsVerification           $verifier,
+        private readonly ResultsVerificationInterface  $verifier,
         private readonly TestResultRepositoryInterface $repository
     )
     {

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class ResultsVerification
+class ResultsVerification implements ResultsVerificationInterface
 {
     private array $questionsMap = [
         'q1' => [
