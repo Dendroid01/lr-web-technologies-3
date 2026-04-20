@@ -2,7 +2,7 @@
 
 namespace App\UseCases\VerifyTest;
 
-use App\Services\ResultsVerification;
+use App\Services\ResultsVerificationInterface;
 use App\Repositories\TestResultRepositoryInterface;
 
 class VerifyTestUseCase

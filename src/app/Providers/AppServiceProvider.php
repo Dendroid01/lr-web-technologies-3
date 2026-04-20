@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\TestResultRepositoryInterface;
 use App\Repositories\EloquentTestResultRepository;
+use App\Services\ResultsVerificationInterface;
+use App\Services\ResultsVerification;
 
 class AppServiceProvider extends ServiceProvider
 {
