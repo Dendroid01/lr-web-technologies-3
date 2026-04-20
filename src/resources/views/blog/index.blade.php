@@ -38,7 +38,7 @@
             </div>
 
             <div class="back-link-wrapper">
-                <a href="{{ route('blog.editor') }}" class="back-link">Редактор блога →</a>
+                <a href="{{ route('admin.blog.editor') }}" class="back-link">Редактор блога →</a>
             </div>
         </section>
     </div>

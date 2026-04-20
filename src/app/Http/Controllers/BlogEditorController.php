@@ -23,7 +23,7 @@ class BlogEditorController extends Controller
 
         BlogPost::create($data);
 
-        return redirect()->route('blog.editor')
+        return redirect()->route('admin.blog.editor')
             ->with('success', true);
     }
 }

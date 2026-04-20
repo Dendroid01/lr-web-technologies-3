@@ -5,7 +5,7 @@
         <h3>Загрузка сообщений из CSV</h3>
 
         <div class="csv-import-form">
-    <form method="POST" action="{{ route('guest-book.import.store') }}" enctype="multipart/form-data"
+    <form method="POST" action="{{ route('admin.guest-book.import.store') }}" enctype="multipart/form-data"
           id="csvImportForm">
         @csrf
 

@@ -10,7 +10,7 @@
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
-                <form method="POST" action="{{ route('blog.import.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.blog.import.store') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="file-input-group">
@@ -40,7 +40,7 @@
                 </form>
 
                 <div class="back-link-wrapper">
-                    <a href="{{ route('blog.editor') }}" class="back-link">← Редактор блога</a>
+                    <a href="{{ route('admin.blog.editor') }}" class="back-link">← Редактор блога</a>
                 </div>
             </div>
         </div>

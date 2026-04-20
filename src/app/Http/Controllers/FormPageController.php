@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
 use App\Http\Requests\TestFormRequest;
+use App\Repositories\TestResultRepositoryInterface;
 use App\Services\ResultsVerification;
 use App\UseCases\VerifyTest\VerifyTestInput;
 use App\UseCases\VerifyTest\VerifyTestUseCase;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class FormPageController extends Controller
@@ -19,7 +21,7 @@ class FormPageController extends Controller
 
     public function submitContacts(ContactFormRequest $request): RedirectResponse
     {
-        return back()->with('success', 'Форма контактов успешно прошла валидацию на сервере.');
+        return back()->with('success', true);
     }
 
     public function showTest(): View
@@ -29,6 +31,10 @@ class FormPageController extends Controller
 
     public function submitTest(TestFormRequest $request, VerifyTestUseCase $useCase): RedirectResponse
     {
+        if(!Auth::check()){
+            return back()->withInput()->with('auth_required', true);
+        }
+
         $input = new VerifyTestInput(
             fullname: $request->input('fullname'),
             group: $request->input('group'),
@@ -41,7 +47,7 @@ class FormPageController extends Controller
 
         return back()
             ->withInput()
-            ->with('success', 'Тест успешно проверен.')
+            ->with('success', true)
             ->with('test_output', $output);
     }
 }
