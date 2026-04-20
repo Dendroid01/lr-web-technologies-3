@@ -11,10 +11,14 @@ class GuestBookImportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => ['required', 'file', 'mimes:csv,txt', 'max:2048'],
+            'file' => [
+                'required',
+                'file',
+                'mimetypes:text/plain,text/csv',
+                'max:2048'
+            ],
         ];
     }
-
     public function messages(): array
     {
         return [
