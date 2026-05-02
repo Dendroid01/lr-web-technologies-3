@@ -12,7 +12,7 @@
             @endif
 
             <div class="blog-editor-form">
-                <form method="POST" action="{{ route('blog.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.blog.store') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="back-link-wrapper">
-                <a href="{{ route('blog.import') }}" class="back-link">Загрузить из CSV →</a>
+                <a href="{{ route('admin.blog.import') }}" class="back-link">Загрузить из CSV →</a>
             </div>
         </section>
     </div>

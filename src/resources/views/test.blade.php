@@ -9,8 +9,16 @@
     </section>
 
     <section class="test-form">
+        @if(session('auth_required'))
+            <div class="alert alert-error">
+                Для получения результатов теста необходимо
+                <a href="{{ route('login') }}">войти</a> или
+                <a href="{{ route('register') }}">зарегистрироваться</a>.
+            </div>
+        @endif
+
         @if(session('success'))
-            <p class="valid">{{ session('success') }}</p>
+            <p class="valid">Форма успешно отправлена!</p>
         @endif
 
         @if ($errors->any())
