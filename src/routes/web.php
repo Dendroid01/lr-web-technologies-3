@@ -81,6 +81,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/editor', [BlogEditorController::class, 'store'])->name('store');
             Route::get('/import', [BlogImportController::class, 'importPage'])->name('import');
             Route::post('/import', [BlogImportController::class, 'import'])->name('import.store');
+
+            Route::get('/{post}/edit', [BlogEditorController::class, 'edit'])->name('blog.edit');
+            Route::put('/{post}', [BlogEditorController::class, 'update'])->name('blog.update');
         });
 
         Route::get('/guest-book/import', [GuestBookImportController::class, 'importPage'])->name('guest-book.import');

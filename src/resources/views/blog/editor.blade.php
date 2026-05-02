@@ -71,14 +71,18 @@
                 <h3>Все записи блога ({{ $posts->total() }})</h3>
 
                 @forelse($posts as $post)
-                    <div class="blog-post-preview">
+                    <div class="blog-post-preview" id="post-row-{{ $post->id }}">
                         <div class="preview-header">
                             <div class="preview-info">
                                 <strong>{{ $post->created_at->format('d.m.Y H:i') }}</strong>
-                                — {{ $post->title }}
+                                — <span class="post-title">{{ $post->title }}</span>
                                 <em>({{ $post->author }})</em>
                             </div>
                             <div class="preview-actions">
+                                <button type="button" class="edit-post-btn" data-post-id="{{ $post->id }}"
+                                        style="margin-right: 8px; padding: 6px 12px; background: #0056b3; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                                    Изменить
+                                </button>
                                 <a href="{{ route('blog.index') }}?post={{ $post->id }}"
                                    class="preview-link"
                                    target="_blank">
@@ -109,4 +113,168 @@
             </div>
         </section>
     </div>
+
+    {{-- Модальное окно редактирования --}}
+    <div class="blur-modal" id="edit-modal">
+        <div class="blur-modal-content">
+            <span class="blur-modal-close" onclick="closeEditModal()">&times;</span>
+            <div class="blur-modal-body">
+                <h2>Редактирование записи</h2>
+                <input type="hidden" id="edit-post-id">
+                <div style="margin-bottom: 15px;">
+                    <label style="font-weight: 700; color: #5a3e36; display: block; margin-bottom: 6px;">Тема
+                        сообщения:</label>
+                    <input type="text" id="edit-title"
+                           style="width:100%; padding: 10px 15px; font-size: 16px; border: 2px solid #d2b48c; border-radius: 8px; outline: none;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: 700; color: #5a3e36; display: block; margin-bottom: 6px;">Текст
+                        сообщения:</label>
+                    <textarea id="edit-message" rows="6"
+                              style="width:100%; padding: 10px 15px; font-size: 16px; border: 2px solid #d2b48c; border-radius: 8px; outline: none; resize: vertical;"></textarea>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button type="button" onclick="closeEditModal()"
+                            style="padding: 10px 20px; background: #6c757d; color: #fff; border: none; border-radius: 6px; cursor: pointer;">
+                        Отмена
+                    </button>
+                    <button type="button" id="save-edit-btn"
+                            style="padding: 10px 20px; background: #28a745; color: #fff; border: none; border-radius: 6px; cursor: pointer;">
+                        Сохранить изменения
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('click', function (e) {
+                    if (e.target.classList.contains('edit-post-btn')) {
+                        const postId = e.target.dataset.postId;
+
+                        if (!postId) {
+                            alert('Ошибка: ID поста не найден');
+                            return;
+                        }
+
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', '/admin/blog/' + postId + '/edit', true);
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                const data = JSON.parse(xhr.responseText);
+                                document.getElementById('edit-post-id').value = data.id;
+                                document.getElementById('edit-title').value = data.title;
+                                document.getElementById('edit-message').value = data.message;
+                                document.getElementById('edit-modal').classList.add('show');
+                            } else {
+                                alert('Ошибка при загрузке данных записи');
+                            }
+                        };
+                        xhr.onerror = function () {
+                            alert('Ошибка соединения с сервером');
+                        };
+                        xhr.send();
+                    }
+                });
+
+                document.getElementById('save-edit-btn').addEventListener('click', function () {
+                    const postId = document.getElementById('edit-post-id').value;
+                    const title = document.getElementById('edit-title').value.trim();
+                    const message = document.getElementById('edit-message').value.trim();
+
+
+                    if (!title || !message) {
+                        alert('Заполните тему и текст сообщения');
+                        return;
+                    }
+
+                    if (!postId) {
+                        alert('Ошибка: ID поста не найден');
+                        return;
+                    }
+
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('PUT', '/admin/blog/' + postId, true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]');
+                    if (csrfToken) {
+                        xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken.getAttribute('content'));
+                    } else {
+                        console.error('CSRF-токен не найден');
+                        alert('Ошибка безопасности: CSRF-токен не найден');
+                        return;
+                    }
+
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            const resp = JSON.parse(xhr.responseText);
+                            if (resp.success) {
+                                const row = document.getElementById('post-row-' + resp.post.id);
+                                if (row) {
+                                    row.querySelector('.post-title').textContent = resp.post.title;
+                                }
+                                closeEditModal();
+                                showNotification('Запись успешно обновлена');
+                            }
+                        } else if (xhr.status === 422) {
+                            const errors = JSON.parse(xhr.responseText);
+                            let errorMsg = 'Ошибки валидации:\n';
+                            for (const key in errors.errors) {
+                                errorMsg += errors.errors[key].join('\n') + '\n';
+                            }
+                            alert(errorMsg);
+                        } else {
+                            alert('Ошибка при сохранении. Код: ' + xhr.status);
+                        }
+                    };
+                    xhr.onerror = function () {
+                        alert('Ошибка соединения с сервером');
+                    };
+                    xhr.send(JSON.stringify({
+                        title: title,
+                        message: message,
+                        author: '{{ auth()->user()->name ?? "Admin" }}'
+                    }));
+                });
+            });
+
+            function closeEditModal() {
+                document.getElementById('edit-modal').classList.remove('show');
+            }
+
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.textContent = message;
+                notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #28a745;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 10000;
+        animation: fadeIn 0.3s ease;
+    `;
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 3000);
+            }
+
+            document.addEventListener('click', function (e) {
+                if (e.target.id === 'edit-modal') {
+                    closeEditModal();
+                }
+            });
+            
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && document.getElementById('edit-modal').classList.contains('show')) {
+                    closeEditModal();
+                }
+            });
+        </script>
+    @endpush
 @endsection
