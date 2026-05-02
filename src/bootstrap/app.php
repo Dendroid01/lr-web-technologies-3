@@ -20,6 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             TrackVisitMiddleware::class,
         ]);
+
+        $middleware->validateCsrfTokens(except: [
+            'blog/add-comment',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

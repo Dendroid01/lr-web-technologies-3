@@ -19,7 +19,6 @@ class BlogPost extends Model
     protected $casts = [
         'created_at' => 'datetime',
     ];
-
     public function comments()
     {
         return $this->hasMany(Comment::class);

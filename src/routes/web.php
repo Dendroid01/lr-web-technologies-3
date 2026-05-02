@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogEditorController;
 use App\Http\Controllers\BlogImportController;
+use App\Http\Controllers\BlogCommentController;
 use App\Http\Controllers\FormPageController;
 use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\GuestBookImportController;
@@ -55,6 +56,8 @@ Route::middleware([App\Http\Middleware\TrackVisitMiddleware::class])->group(func
 
     Route::prefix('blog')->name('blog.')->group(function () {
         Route::get('/', [BlogController::class, 'index'])->name('index');
+        Route::get('/{post}/comments', [BlogCommentController::class, 'index'])->name('blog.comments.index');
+        Route::get('/add-comment', [BlogCommentController::class, 'store'])->name('blog.comments.store'); // GET для JSONP
     });
 });
 
