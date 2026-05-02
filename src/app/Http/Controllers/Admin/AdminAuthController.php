@@ -10,7 +10,7 @@ class AdminAuthController extends Controller
 {
     private const ADMIN_LOGIN = 'admin';
 
-    // Хеш от пароля "admin123"
+    // Хеш от пароля "password123"
     private const ADMIN_PASSWORD_HASH = '$2y$12$EHBV3ZydkUII1tnkUhpjI.MHB1eH7YRHYijeyBi/UfzuQP00Zh3H2';
 
     public function showLogin()
