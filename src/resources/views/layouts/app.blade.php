@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Персональный сайт Гордиенко Дениса. @yield('title')</title>
-    @vite(['resources/css/main.min.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
+    @vite(['resources/js/app.js'])
     @stack('styles')
 </head>
 <body>
