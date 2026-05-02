@@ -69,4 +69,17 @@ class UserAuthController extends Controller
         request()->session()->regenerateToken();
         return redirect()->route('home');
     }
+
+    public function checkLogin(Request $request)
+    {
+        $login = trim($request->query('login'));
+
+        $exists = User::where('login', $login)->exists();
+
+        $xml = new \SimpleXMLElement('<response/>');
+        $xml->addChild('available', $exists ? 'false' : 'true');
+
+        return response($xml->asXML(), 200)
+            ->header('Content-Type', 'application/xml');
+    }
 }

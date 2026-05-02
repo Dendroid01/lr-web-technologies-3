@@ -1,5 +1,4 @@
 <?php
-// routes/web.php
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\StatisticsController;
@@ -15,7 +14,6 @@ use App\Http\Controllers\UserAuthController;
 use App\Models\Interest;
 use Illuminate\Support\Facades\Route;
 
-// Пользовательский раздел
 Route::middleware([App\Http\Middleware\TrackVisitMiddleware::class])->group(function () {
 
     Route::get('/', function () {
@@ -60,14 +58,13 @@ Route::middleware([App\Http\Middleware\TrackVisitMiddleware::class])->group(func
     });
 });
 
-// Авторизация и регистрация пользователей
 Route::get('/register', [UserAuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [UserAuthController::class, 'register'])->name('register.submit');
 Route::get('/login', [UserAuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [UserAuthController::class, 'login'])->name('login.submit');
+Route::get('/check-login', [UserAuthController::class, 'checkLogin'])->name('check.login');
 Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout');
 
-// Зона администрирования
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AdminAuthController::class, 'login'])->name('login.submit');

@@ -48,6 +48,7 @@
                 <label for="login">Логин *</label>
                 <input id="login" type="text" name="login" value="{{ old('login') }}" required
                        class="@error('login') invalid @enderror">
+                <span id="login-availability" style="display:block;margin-top:4px;font-size:0.9em;"></span>
                 @error('login')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
@@ -70,4 +71,74 @@
             </div>
         </form>
     </div>
+
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginInput = document.getElementById('login');
+            const availabilitySpan = document.getElementById('login-availability');
+
+            function checkLoginAvailability() {
+                const login = loginInput.value.trim();
+
+                if (!login) {
+                    availabilitySpan.textContent = '';
+                    return;
+                }
+
+                const oldFrame = document.getElementById('login-check-frame');
+                if (oldFrame) {
+                    oldFrame.remove();
+                }
+                const iframe = document.createElement('iframe');
+                iframe.id = 'login-check-frame';
+                iframe.style.display = 'none';
+
+                const checkUrl = '{{ route("check.login") }}?login=' + encodeURIComponent(login);
+                iframe.src = checkUrl;
+
+                iframe.onload = function () {
+
+                    try {
+                        const doc = iframe.contentDocument || iframe.contentWindow.document;
+
+                        let availableNode = null;
+                        if (doc.querySelector) {
+                            availableNode = doc.querySelector('available');
+                        } else {
+                            const nodes = doc.getElementsByTagName('available');
+                            availableNode = nodes.length ? nodes[0] : null;
+                        }
+
+                        if (availableNode) {
+                            const available = availableNode.textContent;
+
+                            if (available === 'false') {
+                                availabilitySpan.textContent = 'Этот логин уже занят';
+                                availabilitySpan.style.color = 'red';
+                            } else if (available === 'true') {
+                                availabilitySpan.textContent = 'Логин свободен';
+                                availabilitySpan.style.color = 'green';
+                            }
+                        } else {
+                            availabilitySpan.textContent = '';
+                        }
+                    } catch (e) {
+                        availabilitySpan.textContent = '';
+                    }
+
+                };
+                iframe.onerror = function (e) {
+                    availabilitySpan.textContent = 'Ошибка проверки';
+                    availabilitySpan.style.color = 'orange';
+                };
+
+                document.body.appendChild(iframe);
+            }
+
+            loginInput.addEventListener('blur', checkLoginAvailability);
+        });
+    </script>
+@endpush
