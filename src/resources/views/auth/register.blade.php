@@ -1,58 +1,73 @@
 @extends('layouts.app')
 
-@section('content')
-    <div style="max-width:600px;margin:0 auto;">
-        <h1>Регистрация</h1>
+@section('title', 'Регистрация')
 
-        <form method="POST" action="{{ route('register.submit') }}" class="contact-form">
+@section('content')
+    <div class="auth-card">
+        <h1>Создать аккаунт</h1>
+
+        <form method="POST" action="{{ route('register.submit') }}">
             @csrf
 
-            <div>
-                <label>Фамилия *</label>
-                <input type="text" name="last_name" value="{{ old('last_name') }}" required>
+            @if ($errors->any())
+                <div class="alert-error">
+                    @foreach ($errors->all() as $error)
+                        <div>{{ $error }}</div>
+                    @endforeach
+                </div>
+            @endif
+
+            <div class="form-group">
+                <label for="last_name">Фамилия *</label>
+                <input id="last_name" type="text" name="last_name" value="{{ old('last_name') }}" required
+                       class="@error('last_name') invalid @enderror">
                 @error('last_name')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
-            <div>
-                <label>Имя *</label>
-                <input type="text" name="first_name" value="{{ old('first_name') }}" required>
+            <div class="form-group">
+                <label for="first_name">Имя *</label>
+                <input id="first_name" type="text" name="first_name" value="{{ old('first_name') }}" required
+                       class="@error('first_name') invalid @enderror">
                 @error('first_name')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
-            <div>
-                <label>Отчество</label>
-                <input type="text" name="middle_name" value="{{ old('middle_name') }}">
+            <div class="form-group">
+                <label for="middle_name">Отчество</label>
+                <input id="middle_name" type="text" name="middle_name" value="{{ old('middle_name') }}">
                 @error('middle_name')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
-            <div>
-                <label>E-mail *</label>
-                <input type="email" name="email" value="{{ old('email') }}" required>
+            <div class="form-group">
+                <label for="email">E-mail *</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                       class="@error('email') invalid @enderror">
                 @error('email')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
-            <div>
-                <label>Логин *</label>
-                <input type="text" name="login" value="{{ old('login') }}" required>
+            <div class="form-group">
+                <label for="login">Логин *</label>
+                <input id="login" type="text" name="login" value="{{ old('login') }}" required
+                       class="@error('login') invalid @enderror">
                 @error('login')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
-            <div>
-                <label>Пароль *</label>
-                <input type="password" name="password" required>
+            <div class="form-group">
+                <label for="password">Пароль *</label>
+                <input id="password" type="password" name="password" required
+                       class="@error('password') invalid @enderror">
                 @error('password')<span class="field-error">{{ $message }}</span>@enderror
             </div>
 
-            <div>
-                <label>Подтверждение пароля *</label>
-                <input type="password" name="password_confirmation" required>
+            <div class="form-group">
+                <label for="password_confirmation">Подтверждение пароля *</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" required>
             </div>
 
             <button type="submit">Зарегистрироваться</button>
 
-            <p style="text-align:center;margin-top:15px;">
+            <div class="auth-footer">
                 Уже есть аккаунт? <a href="{{ route('login') }}">Войти</a>
-            </p>
+            </div>
         </form>
     </div>
 @endsection
