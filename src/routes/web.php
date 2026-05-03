@@ -10,29 +10,17 @@ use App\Http\Controllers\FormPageController;
 use App\Http\Controllers\GuestBookController;
 use App\Http\Controllers\GuestBookImportController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\TestResultsController;
 use App\Http\Controllers\UserAuthController;
-use App\Models\Interest;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([App\Http\Middleware\TrackVisitMiddleware::class])->group(function () {
 
-    Route::get('/', function () {
-        return view('index');
-    })->name('home');
-
-    Route::get('/about', function () {
-        return view('about');
-    })->name('about');
-
-    Route::get('/interests', function () {
-        $categories = Interest::getAllCategories();
-        return view('interests', compact('categories'));
-    })->name('interests');
-
-    Route::get('/study', function () {
-        return view('study');
-    })->name('study');
+    Route::get('/', [PageController::class, 'home'])->name('home');
+    Route::get('/about', [PageController::class, 'about'])->name('about');
+    Route::get('/interests', [PageController::class, 'interests'])->name('interests');
+    Route::get('/study', [PageController::class, 'study'])->name('study');
 
     Route::get('/gallery', [PhotoController::class, 'index'])->name('gallery');
     Route::get('/gallery/photo/{id}', [PhotoController::class, 'show'])->name('gallery.photo');
@@ -43,9 +31,7 @@ Route::middleware([App\Http\Middleware\TrackVisitMiddleware::class])->group(func
     Route::get('/test', [FormPageController::class, 'showTest'])->name('test');
     Route::post('/test', [FormPageController::class, 'submitTest'])->name('test.submit');
 
-    Route::get('/history', function () {
-        return view('history');
-    })->name('history');
+    Route::get('/history', [PageController::class, 'history'])->name('history');
 
     Route::get('/guest-book', [GuestBookController::class, 'index'])->name('guest-book.index');
     Route::post('/guest-book', [GuestBookController::class, 'store'])->name('guest-book.store');
