@@ -1,17 +1,17 @@
 <?php
+// app/Http/Controllers/Admin/AdminAuthController.php
 
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\AdminAuthService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class AdminAuthController extends Controller
 {
-    private const ADMIN_LOGIN = 'admin';
-
-    // Хеш от пароля "password123"
-    private const ADMIN_PASSWORD_HASH = '$2y$12$EHBV3ZydkUII1tnkUhpjI.MHB1eH7YRHYijeyBi/UfzuQP00Zh3H2';
+    public function __construct(
+        private readonly AdminAuthService $adminAuthService
+    ) {}
 
     public function showLogin()
     {
@@ -25,10 +25,7 @@ class AdminAuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (
-            $request->login === self::ADMIN_LOGIN &&
-            Hash::check($request->password, self::ADMIN_PASSWORD_HASH)
-        ) {
+        if ($this->adminAuthService->attempt($request->login, $request->password)) {
             session(['admin_logged_in' => true]);
             return redirect()->route('admin.visits');
         }

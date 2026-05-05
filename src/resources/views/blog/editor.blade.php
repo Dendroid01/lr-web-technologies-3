@@ -114,7 +114,6 @@
         </section>
     </div>
 
-    {{-- Модальное окно редактирования --}}
     <div class="blur-modal" id="edit-modal">
         <div class="blur-modal-content">
             <span class="blur-modal-close" onclick="closeEditModal()">&times;</span>
@@ -269,7 +268,7 @@
                     closeEditModal();
                 }
             });
-            
+
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && document.getElementById('edit-modal').classList.contains('show')) {
                     closeEditModal();

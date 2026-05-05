@@ -23,6 +23,8 @@ RUN docker-php-ext-install \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+COPY docker/php/php-fpm.conf /usr/local/etc/php-fpm.d/zz-www.conf
+
 RUN docker-php-ext-install opcache
 COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 

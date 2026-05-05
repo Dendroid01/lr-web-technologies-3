@@ -2,31 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
-use App\Models\Comment;
+use App\Http\Resources\CommentResource;
+use App\Services\CommentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BlogCommentController extends Controller
 {
-    // Получение комментариев для поста (JSONP response)
-    public function index(Request $request, $postId)
+    public function __construct(
+        private readonly CommentService $commentService
+    ) {}
+
+    public function index(Request $request, int $postId): \Illuminate\Http\Response
     {
-        $comments = Comment::where('blog_post_id', $postId)
-            ->with('user:id,name,last_name,first_name')
-            ->latest()
-            ->get()
-            ->map(function ($comment) {
-                return [
-                    'id'     => $comment->id,
-                    'author' => $comment->user->full_name ?? $comment->user->name,
-                    'text'   => $comment->text,
-                    'date'   => $comment->created_at->format('d.m.Y H:i'),
-                ];
-            });
+        $comments = CommentResource::collection(
+            $this->commentService->getForPost($postId)
+        );
 
         $callback = $request->get('callback');
-        $json = json_encode($comments);
+        $json = $comments->toJson();
 
         if ($callback) {
             return response($callback . '(' . $json . ');')
@@ -36,23 +30,13 @@ class BlogCommentController extends Controller
         return response($json)->header('Content-Type', 'application/json');
     }
 
-    // Добавление комментария (JSONP response)
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\Response
     {
         $callback = $request->get('callback');
 
         if (!Auth::check()) {
-            $response = [
-                'success' => false,
-                'message' => 'Требуется авторизация'
-            ];
-
-            $json = json_encode($response);
-            if ($callback) {
-                return response($callback . '(' . $json . ');')
-                    ->header('Content-Type', 'application/javascript');
-            }
-            return response($json, 401)->header('Content-Type', 'application/json');
+            $response = ['success' => false, 'message' => 'Требуется авторизация'];
+            return $this->jsonpResponse($response, 401, $callback);
         }
 
         $validated = $request->validate([
@@ -60,30 +44,29 @@ class BlogCommentController extends Controller
             'text'         => 'required|string|min:3|max:1000',
         ]);
 
-        $comment = Comment::create([
-            'blog_post_id' => $validated['blog_post_id'],
-            'user_id'      => Auth::id(),
-            'text'         => $validated['text'],
-        ]);
+        $comment = $this->commentService->store(
+            $validated['blog_post_id'],
+            Auth::id(),
+            $validated['text']
+        );
 
         $response = [
             'success' => true,
-            'comment' => [
-                'id'            => $comment->id,
-                'blog_post_id'  => $comment->blog_post_id,
-                'author'        => Auth::user()->full_name ?? Auth::user()->name,
-                'text'          => $comment->text,
-                'date'          => $comment->created_at->format('d.m.Y H:i'),
-            ]
+            'comment' => (new CommentResource($comment))->toArray($request)
         ];
 
-        $json = json_encode($response);
+        return $this->jsonpResponse($response, 200, $callback);
+    }
+
+    private function jsonpResponse(array $data, int $status, ?string $callback): \Illuminate\Http\Response
+    {
+        $json = json_encode($data);
 
         if ($callback) {
-            return response($callback . '(' . $json . ');')
+            return response($callback . '(' . $json . ');', $status)
                 ->header('Content-Type', 'application/javascript');
         }
 
-        return response($json)->header('Content-Type', 'application/json');
+        return response($json, $status)->header('Content-Type', 'application/json');
     }
 }

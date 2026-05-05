@@ -14,9 +14,9 @@ class BlogImportController extends Controller
 
     public function import(BlogImportRequest $request, BlogImportService $importService)
     {
-        $stats = $importService->import($request->file('file'));
+        $result = $importService->import($request->file('file'));
 
         return redirect()->route('blog.index')
-            ->with('import_stats', $stats);
+            ->with('import_stats', $result->toArray());
     }
 }
